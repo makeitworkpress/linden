@@ -14,6 +14,8 @@ class Header extends Template {
      */
     protected function populate() {
 
+        $general                            = get_theme_mod('linden_general');
+
         // The title and description
         $this->properties['title']          = $this->data['customize']['header_disable_title'] ? false : true;
         $this->properties['description']    = esc_html( get_bloginfo( 'description' ) );
@@ -22,7 +24,7 @@ class Header extends Template {
 
         // The logo
         $this->properties['logo_scheme']    = $this->data['options']['scheme'];
-        $this->properties['logo']           = $this->data['customize']['logo'] ? wp_get_attachment_image( $this->data['customize']['logo'], 'full', false, ['itemprop' => 'image'] ) : ''; 
+        $this->properties['logo']           = isset($general['logo']) && $general['logo'] ? wp_get_attachment_image( $general['logo'], 'full', false, ['itemprop' => 'image'] ) : ''; 
 
         
         // Main Microschemes

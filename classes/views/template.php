@@ -35,7 +35,7 @@ abstract class Template {
          * Load some data into our templates
          */
         $this->data = apply_filters( 'linden_template_data', [
-            'customize'         => get_theme_mod('linden_customizer'),
+            'customize'         => get_theme_mod('linden_layout'),
             'portfolio_meta'    => [], 
             'post_meta'         => [],
             'options'           => in_array($template, ['header', 'footer']) ? get_option('linden_options') : []

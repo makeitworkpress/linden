@@ -200,6 +200,19 @@ class Linden {
         
         } );
 
+        /**
+         * Adapt some of the basic customizer fields
+         */
+        add_action( 'customize_register', function( $wp_customize ) {
+            $wp_customize->get_section( 'title_tagline' )->title        = __('Identity', 'linden');           
+            $wp_customize->get_section( 'static_front_page' )->title    = __('Homepage', 'linden');
+            $wp_customize->get_control( 'show_on_front' )->choices      = [
+                'portfolio' => __( 'Your latest projects', 'linden' ),
+                'posts'     => __( 'Your latest posts', 'linden' ),
+                'page'      => __( 'A static page', 'linden' )
+            ];
+        }, 20, 1 );
+
     }
 
     /** 
@@ -255,6 +268,7 @@ class Linden {
                 $framework = MakeitWorkPress\WP_Custom_Fields\Framework::instance();
 
                 foreach( $this->config->configurations['settings'] as $frame => $options ) {
+                    $frame = strpos($frame, 'customizer') !== false ? 'customizer' : $frame;
                     $framework->add( $frame, $options );    
                 }
 

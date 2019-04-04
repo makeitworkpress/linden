@@ -27,10 +27,10 @@ $header = new Views\Header();
             <?php } ?> 
             <?php if( $header->properties['title'] ) { ?>              
                 <div class="site-title">
-                    <h2 class="main-title">
-                         <a href="<?php echo $header->properties['url'] ?>" title="<?php echo $header->properties['name'] ?>" rel="home">
+                    <h2>
+                        <a href="<?php echo $header->properties['url'] ?>" title="<?php echo $header->properties['name'] ?>" rel="home">
                             <?php echo $header->properties['name'] ?>
-                         </a>
+                        </a>
                     </h2>
                     <?php if( $header->properties['description'] ) { ?>
                         <p class="site-description">
@@ -41,6 +41,7 @@ $header = new Views\Header();
             <?php } ?> 
             <nav class="main-navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
                 <?php wp_nav_menu( ['container_class' => 'menu-header', 'theme_location' => 'primary'] ); ?>
+                <a class="hamburger-menu"><i class="fa fa-bars"></i></a>
             </nav><!-- .main-navigation --> 
         </header><!-- .header --> 
         <main class="main" id="main" <?php echo $header->properties['main_scheme'] ?>>
