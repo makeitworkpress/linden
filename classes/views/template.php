@@ -35,10 +35,9 @@ abstract class Template {
          * Load some data into our templates
          */
         $this->data = apply_filters( 'linden_template_data', [
-            'customize'         => get_theme_mod('linden_layout'),
-            'portfolio_meta'    => [], 
-            'post_meta'         => [],
-            'options'           => in_array($template, ['header', 'footer']) ? get_option('linden_options') : []
+            'customize' => get_theme_mod('linden_layout'),
+            'meta'      => ['subtitle' => '', 'slider' => []], 
+            'options'   => in_array($template, ['header', 'footer']) ? get_option('linden_options') : []
         ] );
         
         // Post specific data. We want to save these queries only to the singular post template themselves, as they are not used always
@@ -48,7 +47,7 @@ abstract class Template {
 
             // Executes only if the Singular class is instanciated.
             if( isset($post->post_type) && $post->post_type == 'portfolio' ) {
-                $this->data['portfolio_meta']   = get_post_meta( $post->ID, 'linden_post_meta', true);   
+                $this->data['meta']   = get_post_meta( $post->ID, 'linden_post_meta', true);   
             }
 
         }

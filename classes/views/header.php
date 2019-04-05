@@ -3,7 +3,6 @@
  * Prepares the variables that are used in our header template
  */
 namespace Views;
-use Components as Components;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 

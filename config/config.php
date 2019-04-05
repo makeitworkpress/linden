@@ -13,14 +13,14 @@ $config = [
         ],
     'register' => [
         'imageSizes' => [
-            [ 'name' => 'project-s', 'width' => 485, 'height' => 285, 'crop' => true],
-            [ 'name' => 'project', 'width' => 970, 'height' => 570, 'crop' => true],
-            [ 'name' => 'project-2x', 'width' => 1940, 'height' => 1140, 'crop' => true],
-            [ 'name' => 'project-half', 'width' => 485, 'height' => 485, 'crop' => true],
-            [ 'name' => 'project-half-2x', 'width' => 970, 'height' => 970, 'crop' => true],
-            [ 'name' => 'project-third', 'width' => 325, 'height' => 325, 'crop' => true],
-            [ 'name' => 'project-third-2x', 'width' => 650, 'height' => 650, 'crop' => true],
-            [ 'name' => 'project-fourth', 'width' => 245, 'height' => 245, 'crop' => true]
+            [ 'name' => 'linden-s', 'width' => 485, 'height' => 285, 'crop' => true],
+            [ 'name' => 'linden', 'width' => 970, 'height' => 570, 'crop' => true],
+            [ 'name' => 'linden-2x', 'width' => 1940, 'height' => 1140, 'crop' => true],
+            [ 'name' => 'linden-half', 'width' => 485, 'height' => 485, 'crop' => true],
+            [ 'name' => 'linden-half-2x', 'width' => 970, 'height' => 970, 'crop' => true],
+            [ 'name' => 'linden-third', 'width' => 325, 'height' => 325, 'crop' => true],
+            [ 'name' => 'linden-third-2x', 'width' => 650, 'height' => 650, 'crop' => true],
+            [ 'name' => 'linden-fourth', 'width' => 245, 'height' => 245, 'crop' => true]
         ],
         'menus' => [
             'primary'  => __( 'Primary Navigation', 'linden' )
@@ -58,6 +58,23 @@ $config = [
                             'type'          => 'media',
                         ]                            
                     ]          
+                ],
+                [
+                    'id'            => 'static_front_page',
+                    'title'         => __('Homepage', 'linden'), 
+                    'fields'        => [
+                        [
+                            'choices'       => [
+                                'posts'     => __('Posts', 'linden'),
+                                'portfolio' => __('Projects', 'linden')
+                            ],
+                            'default'       => 'posts',
+                            'id'            => 'home_post_type',
+                            'title'         => __('Post Type Homepage', 'linden'),
+                            'description'   => __('Which post type do you want to show on the homepage? Only applies when the homepage shows the latest posts.', 'linden'),
+                            'type'          => 'select'
+                        ]                           
+                    ]                     
                 ]                           
             ]
         ],
@@ -82,9 +99,17 @@ $config = [
                         [
                             'default'       => '',
                             'selector'      => ['selector' => '.main', 'property' => '.max-width'],
-                            'id'            => 'content_width',
-                            'title'         => __('Content Maximum Width', 'linden'),
-                            'description'   => __('Sets a custom width for the main content.', 'linden'),
+                            'id'            => 'main_width',
+                            'title'         => __('Main Area Maximum Width', 'linden'),
+                            'description'   => __('Sets a custom width for the main area.', 'linden'),
+                            'type'          => 'dimension'
+                        ],
+                        [
+                            'default'       => '',
+                            'selector'      => ['selector' => '.container', 'property' => '.max-width'],
+                            'id'            => 'container_width',
+                            'title'         => __('Container Maximum Width', 'linden'),
+                            'description'   => __('Sets a custom width for containers centering all textual content.', 'linden'),
                             'type'          => 'dimension'
                         ]                                                  
                     ]
@@ -120,18 +145,53 @@ $config = [
                     'fields'    => [
                         [
                             'default'       => __('Blog', 'linden'),
-                            'id'            => 'posts_archive_title',
+                            'id'            => 'post_archive_title',
                             'title'         => __('Post Archive Title', 'linden'),
-                            'description'   => __('The default title shown above posts in posts archives. Leave empty to remove.', 'linden'),
+                            'description'   => __('The default  title shown above posts in posts archives.', 'linden'),
                             'type'          => 'input'
-                        ], 
+                        ],
+                        [
+                            'default'       => 55,
+                            'id'            => 'excerpt_length',
+                            'title'         => __('Excerpt Length', 'linden'),
+                            'description'   => __('The excerpt lenghts for Posts in archives.', 'linden'),
+                            'type'          => 'number'
+                        ],                          
                         [
                             'default'       => '',
-                            'id'            => 'posts_meta_disable',
+                            'id'            => 'post_archive_more',
+                            'title'         => __('Read More Text', 'linden'),
+                            'description'   => __('The read more text in Post archives. Leave empty to remove.', 'linden'),
+                            'type'          => 'input'
+                        ],                                               
+                        [
+                            'default'       => '',
+                            'id'            => 'post_meta_disable',
                             'title'         => __('Disable Post Meta', 'linden'),
                             'description'   => __('Disables the Post Meta in Archives and Single Posts.', 'linden'),
                             'type'          => 'checkbox'
-                        ]                                                                       
+                        ],                                             
+                        [
+                            'default'       => '',
+                            'id'            => 'post_pagination_enable',
+                            'title'         => __('Enable Single Post Pagination', 'linden'),
+                            'description'   => __('Enables the navigation to next and previous posts.', 'linden'),
+                            'type'          => 'checkbox'
+                        ], 
+                        [
+                            'default'       => __('Next Post'),
+                            'id'            => 'post_pagination_next',
+                            'title'         => __('Post Pagination Next', 'linden'),
+                            'description'   => __('The text for next posts in the post navigation in single posts.', 'linden'),
+                            'type'          => 'input'
+                        ], 
+                        [
+                            'default'       => __('Previous Post'),
+                            'id'            => 'post_pagination_previous',
+                            'title'         => __('Post Pagination Previous', 'linden'),
+                            'description'   => __('The text for previous posts in the post navigation in single posts.', 'linden'),
+                            'type'          => 'input'
+                        ]                                                                                                
                     ]
                 ],
                 [
@@ -150,9 +210,50 @@ $config = [
                             'title'         => __('Projects Archives Columns', 'linden'),
                             'description'   => __('The number of columns used for displaying projects in archives.', 'linden'),
                             'type'          => 'select'
-                        ],                                                                       
+                        ],                                             
+                        [
+                            'default'       => '',
+                            'id'            => 'portfolio_pagination_enable',
+                            'title'         => __('Enable Single Post Pagination', 'linden'),
+                            'description'   => __('Enables the navigation to next and previous posts.', 'linden'),
+                            'type'          => 'checkbox'
+                        ], 
+                        [
+                            'default'       => __('Next Project'),
+                            'id'            => 'portfolio_pagination_next',
+                            'title'         => __('Project Pagination Next', 'linden'),
+                            'description'   => __('The text for next projects in the project navigation in single projects.', 'linden'),
+                            'type'          => 'input'
+                        ], 
+                        [
+                            'default'       => __('Previous Project'),
+                            'id'            => 'portfolio_pagination_previous',
+                            'title'         => __('Project Pagination Previous', 'linden'),
+                            'description'   => __('The text for previous projects in the project navigation in single projects.', 'linden'),
+                            'type'          => 'input'
+                        ]                                                                       
                     ]
                 ],
+                [
+                    'id'            => 'nothing_layout',
+                    'title'         => __('404 Page', 'linden'),
+                    'fields'    => [
+                        [
+                            'default'       => __('404', 'linden'),
+                            'id'            => 'nothing_title',
+                            'title'         => __('404 Page Title', 'linden'),
+                            'description'   => __('The title of the 404 page.', 'linden'),
+                            'type'          => 'input'
+                        ], 
+                        [
+                            'default'       => __('The page you requested could not be found. Perhaps try searching?', 'linden'),
+                            'id'            => 'nothing_description',
+                            'title'         => __('404 Page Description', 'linden'),
+                            'description'   => __('The description underneath the page title.', 'linden'),
+                            'type'          => 'input'
+                        ],                         
+                    ]
+                    ],                 
                 [
                     'id'            => 'footer_layout',
                     'title'         => __('Footer', 'linden'),

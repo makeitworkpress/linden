@@ -154,7 +154,7 @@ class Linden {
          * Loads our template from the custom template directory, located in /templates
          */
         $templates = apply_filters(
-            'velocity_templates', 
+            'linden_templates', 
             ['index', '404', 'archive', 'author', 'category', 'tag', 'taxonomy', 'date', 'home', 'frontpage', 'page', 'paged', 'search', 'single', 'singular', 'attachment']
         ); 
         
@@ -170,7 +170,7 @@ class Linden {
                 return $return;
                 
             });
-        } 
+        }
         
         /**
          * Changes the admin columns for Portfolio Projects
@@ -201,16 +201,11 @@ class Linden {
         } );
 
         /**
-         * Adapt some of the basic customizer fields
+         * Adapt some of the basic customizer section titles
          */
         add_action( 'customize_register', function( $wp_customize ) {
             $wp_customize->get_section( 'title_tagline' )->title        = __('Identity', 'linden');           
             $wp_customize->get_section( 'static_front_page' )->title    = __('Homepage', 'linden');
-            $wp_customize->get_control( 'show_on_front' )->choices      = [
-                'portfolio' => __( 'Your latest projects', 'linden' ),
-                'posts'     => __( 'Your latest posts', 'linden' ),
-                'page'      => __( 'A static page', 'linden' )
-            ];
         }, 20, 1 );
 
     }
