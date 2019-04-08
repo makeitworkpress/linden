@@ -18,7 +18,7 @@ $header = new Views\Header();
         <?php wp_head();	?>
     </head>
     <body <?php body_class(); ?> itemscope="itemscope" itemtype="http://schema.org/WebPage">
-       <header class="header" id="header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+       <header class="header <?php echo $header->properties['class'] ?>" id="header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
             <?php if( $header->properties['logo'] ) { ?>            
                 <a class="logo" href="<?php echo $header->properties['url'] ?>" title="<?php echo $header->properties['name'] ?>" rel="home" itemscope="itemscope" itemtype="http://schema.org/<?php echo $header->properties['logo_scheme']; ?>">
                     <?php echo $header->properties['logo'] ?>
@@ -41,7 +41,7 @@ $header = new Views\Header();
             <?php } ?> 
             <nav class="main-navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
                 <?php wp_nav_menu( ['container_class' => 'menu-header', 'theme_location' => 'primary'] ); ?>
-                <a class="hamburger-menu"><i class="fa fa-bars"></i></a>
+                <a class="hamburger-menu"><i class="icon-bars"></i></a>
             </nav><!-- .main-navigation --> 
         </header><!-- .header --> 
         <main class="main" id="main" <?php echo $header->properties['main_scheme'] ?>>

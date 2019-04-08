@@ -128,8 +128,8 @@ $config = [
                         [
                             'choices'       => [
                                 'always'    => __('Always', 'linden'),
-                                'tablet'    => __('On Tablets & Phones', 'linden'),
-                                'mobiles'   => __('On Mobile Phones', 'linden')
+                                'tablets'   => __('On Tablets & Phones', 'linden'),
+                                'phones'    => __('On Mobile Phones', 'linden')
                             ],
                             'default'       => '',
                             'id'            => 'header_hamburger',
@@ -198,19 +198,19 @@ $config = [
                     'id'            => 'projects_layout',
                     'title'         => __('Projects', 'linden'),
                     'fields'    => [
-                        [
-                            'choices'       => [
-                                'full'      => __('Full', 'linden'),
-                                'half'      => __('Two', 'linden'),
-                                'third'     => __('Three', 'linden'),
-                                'fourth'     > __('Four', 'linden'),
-                            ],
-                            'default'       => '',
-                            'id'            => 'portfolio_archive_columns',
-                            'title'         => __('Projects Archives Columns', 'linden'),
-                            'description'   => __('The number of columns used for displaying projects in archives.', 'linden'),
-                            'type'          => 'select'
-                        ],                                             
+                        // [
+                        //     'choices'       => [
+                        //         'full'      => __('Full', 'linden'),
+                        //         'half'      => __('Two', 'linden'),
+                        //         'third'     => __('Three', 'linden'),
+                        //         'fourth'     > __('Four', 'linden'),
+                        //     ],
+                        //     'default'       => '',
+                        //     'id'            => 'portfolio_archive_columns',
+                        //     'title'         => __('Projects Archives Columns', 'linden'),
+                        //     'description'   => __('The number of columns used for displaying projects in archives.', 'linden'),
+                        //     'type'          => 'select'
+                        // ],                                             
                         [
                             'default'       => '',
                             'id'            => 'portfolio_pagination_enable',
@@ -289,7 +289,7 @@ $config = [
                             'default'       => '',
                             'selector'      => 'body',
                             'id'            => 'body_font_color',
-                            'title'         => __('Font Color', 'velocity'),
+                            'title'         => __('Font Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],                  
@@ -297,7 +297,7 @@ $config = [
                             'default'       => '',
                             'selector'      => 'h1, h2, h3, h4, h5, h6, .posts .entry-title a, .projects .entry-title a, .main-title a',
                             'id'            => 'body_heading_color',
-                            'title'         => __('Heading Color', 'velocity'),
+                            'title'         => __('Heading Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
@@ -305,7 +305,7 @@ $config = [
                             'default'       => '',
                             'selector'      => 'a',
                             'id'            => 'body_link_color',
-                            'title'         => __('Link Color', 'velocity'),
+                            'title'         => __('Link Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
@@ -313,7 +313,7 @@ $config = [
                             'default'       => '',
                             'selector'      => 'a:hover, .posts .entry-title a:hover, .projects .entry-title a:hover, .entry-meta a:hover, .main-title a:hover',
                             'id'            => 'body_link_hover_color',
-                            'title'         => __('Link Hover Color', 'velocity'),
+                            'title'         => __('Link Hover Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
@@ -321,7 +321,7 @@ $config = [
                             'default'       => '',
                             'selector'      => 'blockquote',
                             'id'            => 'blockquote_color',
-                            'title'         => __('Blockquote Color', 'velocity'),
+                            'title'         => __('Blockquote Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],                       
@@ -335,7 +335,7 @@ $config = [
                             'default'       => '',
                             'selector'      => ['selector' => '.header', 'property' => 'background-color'],
                             'id'            => 'header_background_color',
-                            'title'         => __('Header Background Color', 'velocity'),
+                            'title'         => __('Header Background Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],                                  
@@ -343,7 +343,7 @@ $config = [
                             'default'       => '',
                             'selector'      => '.main-navigation a',
                             'id'            => 'header_link_color',
-                            'title'         => __('Navigation Link Color', 'velocity'),
+                            'title'         => __('Navigation Link Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
@@ -351,7 +351,7 @@ $config = [
                             'default'       => '',
                             'selector'      => '.main-navigation a:hover, .main-navigation .current-menu-item > a',
                             'id'            => 'header_link_hover_color',
-                            'title'         => __('Navigation Hover & Active Color', 'velocity'),
+                            'title'         => __('Navigation Hover & Active Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
@@ -359,7 +359,7 @@ $config = [
                             'default'       => '',
                             'selector'      => ['selector' => '.main-navigation a:hover, .main-navigation .current-menu-item > a', 'property' => 'background-color'],
                             'id'            => 'header_link_hover_background_color',
-                            'title'         => __('Navigation Hover & Active Background Color', 'velocity'),
+                            'title'         => __('Navigation Hover & Active Background Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
@@ -367,7 +367,7 @@ $config = [
                             'default'       => '',
                             'selector'      => '.main-navigation .hamburger-menu',
                             'id'            => 'header_hamburger_color',
-                            'title'         => __('Navigation Hamburger Menu Color', 'velocity'),
+                            'title'         => __('Navigation Hamburger Menu Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ]                                              
@@ -381,8 +381,8 @@ $config = [
                             'default'       => '',
                             'selector'      => '.page .entry-header h1, .archive .entry-header h1',
                             'id'            => 'page_title_color',
-                            'title'         => __('Page Title Colors', 'velocity'),
-                            'description'   => __('Adjusts the title colors for pages.', 'velocity'),
+                            'title'         => __('Page Title Colors', 'linden'),
+                            'description'   => __('Adjusts the title colors for pages.', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
@@ -390,8 +390,8 @@ $config = [
                             'default'       => '',
                             'selector'      => '.page .entry-content',
                             'id'            => 'page_content_color',
-                            'title'         => __('Page Content Colors', 'velocity'),
-                            'description'   => __('Adjusts the content text colors for pages.', 'velocity'),
+                            'title'         => __('Page Content Colors', 'linden'),
+                            'description'   => __('Adjusts the content text colors for pages.', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ]                        
@@ -405,8 +405,8 @@ $config = [
                             'default'       => '',
                             'selector'      => '.post .entry-header h1',
                             'id'            => 'post_title_color',
-                            'title'         => __('Page Title Colors', 'velocity'),
-                            'description'   => __('Adjusts the title colors for posts.', 'velocity'),
+                            'title'         => __('Page Title Colors', 'linden'),
+                            'description'   => __('Adjusts the title colors for posts.', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
@@ -414,8 +414,8 @@ $config = [
                             'default'       => '',
                             'selector'      => '.entry-meta',
                             'id'            => 'entry_meta_color',
-                            'title'         => __('Entry Meta Colors', 'velocity'),
-                            'description'   => __('Adjusts the color for post meta, such as the date, and category a post is in.', 'velocity'),
+                            'title'         => __('Entry Meta Colors', 'linden'),
+                            'description'   => __('Adjusts the color for post meta, such as the date, and category a post is in.', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
@@ -423,8 +423,8 @@ $config = [
                             'default'       => '',
                             'selector'      => '.post .entry-content',
                             'id'            => 'post_content_color',
-                            'title'         => __('Post Content Colors', 'velocity'),
-                            'description'   => __('Adjusts the content text colors for posts.', 'velocity'),
+                            'title'         => __('Post Content Colors', 'linden'),
+                            'description'   => __('Adjusts the content text colors for posts.', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ]                        
@@ -438,8 +438,8 @@ $config = [
                             'default'       => '',
                             'selector'      => '.portfolio .entry-header h1',
                             'id'            => 'portfolio_title_color',
-                            'title'         => __('Projects Title Colors', 'velocity'),
-                            'description'   => __('Adjusts the title colors for projects.', 'velocity'),
+                            'title'         => __('Projects Title Colors', 'linden'),
+                            'description'   => __('Adjusts the title colors for projects.', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
@@ -447,8 +447,8 @@ $config = [
                             'default'       => '',
                             'selector'      => '.portfolio .entry-content',
                             'id'            => 'portfolio_content_color',
-                            'title'         => __('Projects Content Colors', 'velocity'),
-                            'description'   => __('Adjusts the content text colors for projects.', 'velocity'),
+                            'title'         => __('Projects Content Colors', 'linden'),
+                            'description'   => __('Adjusts the content text colors for projects.', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],  
@@ -456,8 +456,8 @@ $config = [
                             'default'       => '',
                             'selector'      => '.projects .entry-title, .projects .entry-title a',
                             'id'            => 'portfolio_archive_title_color',
-                            'title'         => __('Projects Archive Title Colors', 'velocity'),
-                            'description'   => __('Adjusts the title colors for projects in archives.', 'velocity'),
+                            'title'         => __('Projects Archive Title Colors', 'linden'),
+                            'description'   => __('Adjusts the title colors for projects in archives.', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
@@ -465,8 +465,8 @@ $config = [
                             'default'       => '',
                             'selector'      => ['.projects .entry-header', 'selector' => 'background-color'],
                             'id'            => 'portfolio_archive_overlay_color',
-                            'title'         => __('Projects Archive Title Background Color', 'velocity'),
-                            'description'   => __('Adjusts the title background color for projects in archives.', 'velocity'),
+                            'title'         => __('Projects Archive Title Background Color', 'linden'),
+                            'description'   => __('Adjusts the title background color for projects in archives.', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ]                                         
@@ -480,7 +480,7 @@ $config = [
                             'default'       => '',
                             'selector'      => ['.footer', 'selector' => 'background-color'],
                             'id'            => 'footer_background',
-                            'title'         => __('Footer Background Color', 'velocity'),
+                            'title'         => __('Footer Background Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],                                                                                                
@@ -488,7 +488,7 @@ $config = [
                             'default'       => '',
                             'selector'      => '.footer',
                             'id'            => 'footer_color',
-                            'title'         => __('Footer Text Colors', 'velocity'),
+                            'title'         => __('Footer Text Colors', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
@@ -496,7 +496,7 @@ $config = [
                             'default'       => '',
                             'selector'      => '.footer a',
                             'id'            => 'footer_link_color',
-                            'title'         => __('Footer Link Color', 'velocity'),
+                            'title'         => __('Footer Link Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
@@ -504,7 +504,7 @@ $config = [
                             'default'       => '',
                             'selector'      => '.footer a:hover',
                             'id'            => 'footer_link_hover_color',
-                            'title'         => __('Footer Link Hover Color', 'velocity'),
+                            'title'         => __('Footer Link Hover Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ]                       
@@ -526,15 +526,15 @@ $config = [
                             'default'       => '',
                             'selector'      => 'body',
                             'id'            => 'body_typography',
-                            'title'         => __('General Typography', 'velocity'),
+                            'title'         => __('General Typography', 'linden'),
                             'type'          => 'typography'
                         ],
                         [
                             'default'       => '',
                             'selector'      => 'h1, h2, h3, h4, h5, h6',
                             'id'            => 'heading_typography',
-                            'title'         => __('Headings Typography', 'velocity'),
-                            'description'   => __('The default font for the headings. Be aware that this will affect all headings.', 'velocity'),
+                            'title'         => __('Headings Typography', 'linden'),
+                            'description'   => __('The default font for the headings. Be aware that this will affect all headings.', 'linden'),
                             'type'          => 'typography'
                         ]                        
                     ]
@@ -547,21 +547,21 @@ $config = [
                             'default'       => '',
                             'selector'      => '.main-navigation',
                             'id'            => 'header_menu_typography',
-                            'title'         => __('Navigation Menu Typography', 'velocity'),
+                            'title'         => __('Navigation Menu Typography', 'linden'),
                             'type'          => 'typography'
                         ],
                         [
                             'default'       => '',
                             'selector'      => '.site-title h2',
                             'id'            => 'header_name_typography',
-                            'title'         => __('Site Title Typography', 'velocity'),
+                            'title'         => __('Site Title Typography', 'linden'),
                             'type'          => 'typography'
                         ],
                         [
                             'default'       => '',
                             'selector'      => '.site-title p',
                             'id'            => 'header_description_typography',
-                            'title'         => __('Site Description Typography', 'velocity'),
+                            'title'         => __('Site Description Typography', 'linden'),
                             'type'          => 'typography'
                         ]                                                                        
                     ]
@@ -574,16 +574,16 @@ $config = [
                             'default'       => '',
                             'selector'      => '.page .entry-header h1, .archive .entry-header h1',
                             'id'            => 'page_title_typography',
-                            'title'         => __('Page Title Typography', 'velocity'),
-                            'description'   => __('The typography for the main title in pages.', 'velocity'),
+                            'title'         => __('Page Title Typography', 'linden'),
+                            'description'   => __('The typography for the main title in pages.', 'linden'),
                             'type'          => 'typography'
                         ],
                         [
                             'default'       => '',
                             'selector'      => '.page .entry-content',
                             'id'            => 'page_content_typography',
-                            'title'         => __('Page Content Typography', 'velocity'),
-                            'description'   => __('The typography for the content in pages.', 'velocity'),
+                            'title'         => __('Page Content Typography', 'linden'),
+                            'description'   => __('The typography for the content in pages.', 'linden'),
                             'type'          => 'typography'
                         ]                                                 
                     ]
@@ -596,40 +596,40 @@ $config = [
                             'default'       => '',
                             'selector'      => '.post .entry-header h1',
                             'id'            => 'post_title_typography',
-                            'title'         => __('Post Title Typography', 'velocity'),
-                            'description'   => __('The typography for the main title in pages.', 'velocity'),
+                            'title'         => __('Post Title Typography', 'linden'),
+                            'description'   => __('The typography for the main title in pages.', 'linden'),
                             'type'          => 'typography'
                         ],
                         [
                             'default'       => '',
                             'selector'      => '.entry-meta',
                             'id'            => 'post_meta_typography',
-                            'title'         => __('Entry Meta Typography', 'velocity'),
-                            'description'   => __('The typography for meta information such as author and date.', 'velocity'),
+                            'title'         => __('Entry Meta Typography', 'linden'),
+                            'description'   => __('The typography for meta information such as author and date.', 'linden'),
                             'type'          => 'typography'
                         ],                        
                         [
                             'default'       => '',
                             'selector'      => '.post .entry-content',
                             'id'            => 'post_content_typography',
-                            'title'         => __('Post Content Typography', 'velocity'),
-                            'description'   => __('The typography for the content in posts.', 'velocity'),
+                            'title'         => __('Post Content Typography', 'linden'),
+                            'description'   => __('The typography for the content in posts.', 'linden'),
                             'type'          => 'typography'
                         ],
                         [
                             'default'       => '',
                             'selector'      => '.posts .entry-title',
                             'id'            => 'post_archive_title_typography',
-                            'title'         => __('Posts Archives Post Title', 'velocity'),
-                            'description'   => __('The typography for post titles within archives.', 'velocity'),
+                            'title'         => __('Posts Archives Post Title', 'linden'),
+                            'description'   => __('The typography for post titles within archives.', 'linden'),
                             'type'          => 'typography'
                         ],
                         [
                             'default'       => '',
                             'selector'      => '.posts .entry-content',
                             'id'            => 'post_archive_content_typography',
-                            'title'         => __('Posts Archives Content', 'velocity'),
-                            'description'   => __('The typography for post content within archives.', 'velocity'),
+                            'title'         => __('Posts Archives Content', 'linden'),
+                            'description'   => __('The typography for post content within archives.', 'linden'),
                             'type'          => 'typography'
                         ],                                                                         
                     ]
@@ -642,40 +642,40 @@ $config = [
                             'default'       => '',
                             'selector'      => '.portfolio .entry-header h1',
                             'id'            => 'portfolio_title_typography',
-                            'title'         => __('Projects Title Typography', 'velocity'),
-                            'description'   => __('The typography for the main title in projects.', 'velocity'),
+                            'title'         => __('Projects Title Typography', 'linden'),
+                            'description'   => __('The typography for the main title in projects.', 'linden'),
                             'type'          => 'typography'
                         ],
                         [
                             'default'       => '',
                             'selector'      => '.portfolio .entry-header p',
                             'id'            => 'portfolio_subtitle_typography',
-                            'title'         => __('Projects Title Typography', 'velocity'),
-                            'description'   => __('The typography for the subtitles in projects.', 'velocity'),
+                            'title'         => __('Projects Title Typography', 'linden'),
+                            'description'   => __('The typography for the subtitles in projects.', 'linden'),
                             'type'          => 'typography'
                         ],                        
                         [
                             'default'       => '',
                             'selector'      => '.portfolio .entry-content',
                             'id'            => 'portfolio_content_typography',
-                            'title'         => __('Page Content Typography', 'velocity'),
-                            'description'   => __('The typography for the content in projects.', 'velocity'),
+                            'title'         => __('Page Content Typography', 'linden'),
+                            'description'   => __('The typography for the content in projects.', 'linden'),
                             'type'          => 'typography'
                         ],
                         [
                             'default'       => '',
                             'selector'      => '.projects .entry-title',
                             'id'            => 'portfolio_archive_title_typography',
-                            'title'         => __('Projects Archives Project Title', 'velocity'),
-                            'description'   => __('The typography for project titles within project archives.', 'velocity'),
+                            'title'         => __('Projects Archives Project Title', 'linden'),
+                            'description'   => __('The typography for project titles within project archives.', 'linden'),
                             'type'          => 'typography'
                         ],
                         [
                             'default'       => '',
                             'selector'      => '.projects .entry-header p',
                             'id'            => 'portfolio_archive_subtitle_typography',
-                            'title'         => __('Projects Archives Subtitle', 'velocity'),
-                            'description'   => __('The typography for project subtitles within project archives.', 'velocity'),
+                            'title'         => __('Projects Archives Subtitle', 'linden'),
+                            'description'   => __('The typography for project subtitles within project archives.', 'linden'),
                             'type'          => 'typography'
                         ]                                                  
                     ]
@@ -688,7 +688,7 @@ $config = [
                             'default'       => '',
                             'selector'      => '.footer',
                             'id'            => 'footer_typography',
-                            'title'         => __('Footer Font', 'velocity'),
+                            'title'         => __('Footer Font', 'linden'),
                             'type'          => 'typography'
                         ]                        
                     ]

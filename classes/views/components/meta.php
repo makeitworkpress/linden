@@ -42,7 +42,7 @@ class Meta extends Component {
 		global $post;
 
 		$this->properties['categories'] = get_the_term_list( $post->ID, 'category', '', ', ' );
-		$this->properties['tags'] 		= get_the_term_list( $post->ID, 'post_tag', '<i class="fa fa-tag"></i>', ', ' );
+		$this->properties['tags'] 		= get_the_term_list( $post->ID, 'post_tag', '<i class="icon-tags"></i>', ', ' );
 		$this->properties['time']		= get_the_date();
 		$this->properties['time_c']		= get_the_date('c');
 		$this->properties['author']		= get_the_author();

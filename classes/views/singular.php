@@ -40,12 +40,25 @@ class Singular extends Template {
         $this->pagination                   = isset($this->data['customize'][$post->post_type . '_pagination_enable']) && $this->data['customize'][$post->post_type . '_pagination_enable'] ? new Components\Pagination(['customize' => $this->data['customize']]) : false;
         $this->comments                     = is_singular('post') ? new Components\Comments() : false;
 
-        if( is_page_template('Projects') ) {
-            $singular->loop = new Components\Projects();
-        } elseif( is_page_template('Blog') ) {
-            $singular->loop = new Components\Posts(['customize' => $this->data['customize']]);
+
+        /**
+         * Additional content for Page Templates
+         */
+
+        // Pagination
+        if( is_front_page() ) {
+            $paged = get_query_var('page') ? get_query_var('page') : 1;
         } else {
-            $singular->loop = false;
+            $paged = get_query_var('paged') ? get_query_var('paged') : 1;
+        }
+
+        // Retrieving the loop
+        if( is_page_template('Projects') ) {
+            $this->loop = new Components\Projects(['customize' => $this->data['customize'], 'query' => ['post_type' => 'portfolio', 'paged' => $paged]]);
+        } elseif( is_page_template('Blog') ) {
+            $this->loop = new Components\Posts(['customize' => $this->data['customize'], 'query' => ['paged' => $paged]]);
+        } else {
+            $this->loop = false;
         }
 
     }

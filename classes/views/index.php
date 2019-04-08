@@ -31,7 +31,7 @@ class Index extends Template {
         } elseif( is_category() ) {
             $this->properties['title'] = single_cat_title( '', false );
         } elseif( is_tag() ) {
-            $this->properties['title'] = '<i class="fa fa-tag"></i>' . single_tag_title( '', false );
+            $this->properties['title'] = '<i class="icon-tags"></i>' . single_tag_title( '', false );
         } elseif( isset(get_queried_object()->labels->name) ) {
             $this->properties['title'] = get_queried_object()->labels->name;
         } else {

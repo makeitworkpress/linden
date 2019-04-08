@@ -1,0 +1,28 @@
+// main: linden.less
+
+/**
+ * Main Content Styling
+ */
+.main {
+    background: #fff;
+    left: 260px;
+    max-width: 970px;
+    position: relative;
+    width: 100%;    
+}
+
+.header-always ~ .main {
+    left: 0;
+}
+
+@media screen and (max-width: 1024px) {
+    .header-tablets ~ .main {
+        left: 0;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header-phones ~ .main {
+        left: 0;
+    }
+}

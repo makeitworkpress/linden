@@ -16,7 +16,8 @@ class Projects extends Component {
     public function init() {
         
         // Our attributes
-        $this->defaults = ['template' => ''];
+        $this->defaults     = ['customize' => ['main_width' => 0, 'portfolio_archive_columns' => 'full'], 'query' => ''];
+        $this->properties   = ['posts' => [], 'pagination' => false];
 
     }
 
@@ -27,53 +28,38 @@ class Projects extends Component {
      */
     public function populate() {
 
-        if( $this->atts['template'] ) {
-            $this->properties['file'] = $this->atts['template'];
-        }  else {
-            $this->properties['file'] = '/templates/compatible/comments.php';
+        if( $this->atts['query'] ) {
+            $wp_query = new WP_Query($this->atts['query']);
+        } else {
+            global $wp_query;
         }
 
+        // There is nothing queried
+        if( ! isset($wp_query) || ! isset($wp_query->query->posts) ) {
+            return;
+        }
+
+        // @to extend - Add multiple column support for a grid based lay-out
+        $size = $this->atts['customize']['main_width'] > 970 ? 'linden-2x' : 'linden';
+
+        foreach( $wp_query->query->posts as $post ) {
+
+            $meta               = get_post_meta($post, 'linden_meta', true);
+
+            $this->properties['posts'][$post->ID] = [ 
+                'class'         => implode(' ', array_filter(get_post_class('project-item ' . $this->atts['customize']['portfolio_archive_columns'], $post->ID)) ),
+                'image'         => has_post_thumbnail($post) ? get_the_post_thumbnail( $post, $size, ['itemprop' => 'image'] ) : false, 
+                'link'          => esc_url( get_permalink($post) ),   
+                'subtitle'      => isset($meta['subtitle']) && $meta['subtitle'] ? $meta['subtitle'] : '',
+                'title'         => esc_html( get_the_title($post) ),
+                'title_attr'    => strip_tags( esc_html(get_the_title($post)) )                 
+            ];                
+        }
+
+        // Set-up the pagination
+        if( $wp_query->query->max_num_pages > 1 ) {
+            $this->properties['pagination'] = new Pagination(['query' => $wp_query, 'type' => 'archive']); 
+        }         
+
     }
-
 }
-
-<!-- Start the Loop. -->
-
-<?php /* If there are no posts to display, such as an empty archive page */ ?>
-<?php if ( ! have_posts() ) : ?>
-	<article id="portfolio-0" class="portfolio error404 not-found">
-		<header class="post-header"> 
-			<h1 class="entry-title"><?php _e( 'Not Found', 'tp' ); ?></h1>
-		</header>
-		<div class="entry-content">
-			<p><?php _e( 'Apologies, but no results were found for the requested archive.', 'tp' ); ?></p>
-		</div><!-- .entry-content -->
-	</article><!-- #post-0 -->
-<?php endif; ?>
-<?php 
-$args = array( 'post_type' => 'portfolio');
-$loop = new WP_Query( $args );
-while ( $loop->have_posts() ) : $loop->the_post(); ?>
-    <article id="post-<?php the_ID(); ?>" class="single-entry">
-        <header class="portfolio-header">
-            <a class="caption" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" rel="bookmark">  
-                <h2>
-                    <?php the_title(); ?>
-                </h2>
-                <?php if (get_post_meta( $post->ID, "portfolio_subtitel_value", true )) { ?>
-                    <h6><?php echo get_post_meta( $post->ID, "portfolio_subtitel_value", true ); ?></h6>
-                <?php } ?>
-            </a>
-            <?php if(has_post_thumbnail()) { ?>
-                <figure class="post-image">
-                    <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-                    	<?php the_post_thumbnail( 'large' ); ?>
-                    </a>
-                </figure>
-        	<?php } ?>
-        </header>
-        <div class="ajax-load">
-        	<!-- Loads ajax content -->
-        </div>
-    </article>
-<?php endwhile;?>
