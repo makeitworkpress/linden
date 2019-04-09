@@ -2,9 +2,9 @@
 /**
  * The template for displaying Archive pages.
  */
-new Views\Index();
+$index = new Views\Index();
 $index->header(); ?>
-<article id="archive" class="page" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
+<article id="archive" class="archive" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
 	<?php if($index->properties['title']) { ?>
 		<header class="entry-header">
 			<div class="container">

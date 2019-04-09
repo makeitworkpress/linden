@@ -1,20 +1,95 @@
 // main: linden.less
 
 /**
+ * General Dimensions
+ */
+body {
+    background: #efefef;
+}
+
+.container {
+	padding: 20px;
+	margin: 0 auto;
+	max-width: 530px;
+	width: 100%;
+}
+
+/**
+ * Images
+ */
+img {
+	height: auto;
+	max-width: 100%;	
+	figure & {
+		display: block;
+	}
+}
+
+img, figure {
+    height: auto;
+    max-width: 100%;   
+    &.alignright {
+        float: right; 
+        margin: 0 0 30px 30px;
+    } 
+    &.alignleft {
+        float: left; 
+        margin: 0 30px 30px 0;
+    }
+    &.aligncenter {
+        display: block; 
+        margin: 0 auto 30px auto;
+    }    
+}
+
+/**
+ * Videos
+ */
+.wp-video {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;   
+    video, embed, iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;  
+    }
+} 
+
+/**
  * Form Fields
  */
- input, textarea, select { 
+input, textarea, select { 
 	background: #fff; 
 	border: 1px solid @border; 
-	color: @input;
-    padding: 5px 7px; 
+    color: @input;
+    font-family: 'MontSerrat', Arial, sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    padding: 10px; 
     &:focus {
         border: 1px solid @focus;
     }
 }
 
 input[type="submit"] {
-	background: @background; 
+    background: @background; 
+    border: none;
 	cursor: pointer;
 	font-size: 1.1em;
 } 
+
+label {
+    display: block;
+    font-family: 'MontSerrat', Arial, sans-serif;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+    text-transform: uppercase;
+}
+
+input[type="checkbox"] ~ label {
+    display: inline-block;
+    margin-left: 5px;
+}

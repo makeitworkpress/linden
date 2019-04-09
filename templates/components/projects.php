@@ -10,7 +10,7 @@
         
         <article id="portfolio-0" class="portfolio error404 not-found container">
             <header class="post-header"> 
-                <h1 class="entry-title"><?php _e( 'Not Found', 'linden' ); ?></h1>
+                <h2 class="entry-title"><?php _e( 'Nothing Found', 'linden' ); ?></h2>
             </header>
             <div class="entry-content">
                 <p><?php _e( 'Apologies, but no results were found for the requested archive.', 'linden' ); ?></p>
@@ -27,7 +27,7 @@
                             <?php echo $post['title']; ?>
                         </h2>
                         <?php if( $post['subtitle'] ) { ?>
-                            <p class="subtitle"><?php echo $post['subtitle']; ?></p>
+                            <p class="sub-title"><?php echo $post['subtitle']; ?></p>
                         <?php } ?>
                     </a>
                     <?php if( $post['image'] ) { ?>

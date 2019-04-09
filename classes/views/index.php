@@ -53,9 +53,14 @@ class Index extends Template {
         $type = 'post';
     
         global $wp_query;
-        
-        if( isset($wp_query->query['post_type']) ) {
-            $type = $wp_query->query['post_type'];
+
+        if( is_front_page() ) {
+
+            $general    = get_theme_mod('linden_general');
+            $type       = isset($general['home_post_type']) && $general['home_post_type'] ? $general['home_post_type'] : 'post';
+
+        } elseif( isset($wp_query->query['post_type']) ) {
+            $type       = $wp_query->query['post_type'];
         } elseif( $wp_query->tax_query->queried_terms ) {
 
             // Get the first of the queried taxonomies
@@ -68,7 +73,7 @@ class Index extends Template {
                 $taxonomy = get_taxonomy($taxonomy);
             }
             if( isset($taxonomy->object_type[0]) ) {
-                $type = $taxonomy->object_type[0];
+                $type   = $taxonomy->object_type[0];
             }       
         }
 

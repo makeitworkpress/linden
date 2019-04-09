@@ -3,6 +3,7 @@
  * Prepares the variables that are used in our comments component template
  */
 namespace Views\Components;
+use WP_Query as WP_Query;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 

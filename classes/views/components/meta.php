@@ -39,14 +39,14 @@ class Meta extends Component {
      */
     public function populate() {
 
-		global $post;
+        global $post;
 
 		$this->properties['categories'] = get_the_term_list( $post->ID, 'category', '', ', ' );
 		$this->properties['tags'] 		= get_the_term_list( $post->ID, 'post_tag', '<i class="icon-tags"></i>', ', ' );
 		$this->properties['time']		= get_the_date();
 		$this->properties['time_c']		= get_the_date('c');
-		$this->properties['author']		= get_the_author();
-		$this->properties['author_url']	= get_author_posts_url( get_the_author_meta('ID') );
+		$this->properties['author']		= get_the_author_meta('display_name', $post->post_author);
+		$this->properties['author_url']	= get_author_posts_url( $post->post_author );
 	
 
     }

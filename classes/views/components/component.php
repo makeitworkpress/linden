@@ -7,7 +7,7 @@ use ReflectionClass as ReflectionClass;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
-abstract class Components {
+abstract class Component {
 
     /**
      * Contains the merged attributes

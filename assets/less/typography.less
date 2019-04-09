@@ -7,50 +7,39 @@
     font-family: 'LaneNarrow';
     font-style: normal;
     font-weight: normal;
-    src: url('../fonts/lanenarrow.ttf') format('ttf');
+    src: url('../fonts/lanenarrow.ttf');
 }
 @font-face {
     font-family: 'MerriWeather';
     font-style: normal;
     font-weight: 300;
-    src: url('../fonts/merriweather-light.ttf') format('ttf');
+    src: url('../fonts/merriweather-light.ttf');
 }
 @font-face {
     font-family: 'MerriWeather';
     font-style: italic;
     font-weight: 300;
-    src: url('../fonts/merriweather-light-italic.ttf') format('ttf');
+    src: url('../fonts/merriweather-light-italic.ttf');
 }
 @font-face {
     font-family: 'MerriWeather';
     font-style: normal;
     font-weight: 700;
-    src: url('../fonts/merriweather-bold.ttf') format('ttf');
+    src: url('../fonts/merriweather-bold.ttf');
 }
 @font-face {
     font-family: 'MontSerrat';
     font-style: normal;
     font-weight: 300;
-    src: url('../fonts/montserrat-light.ttf') format('ttf');
-}
-@font-face {
-    font-family: 'MontSerrat';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/montserrat-regular.ttf') format('ttf');
+    src: url('../fonts/montserrat-light.ttf');
 }
 @font-face {
     font-family: 'MontSerrat';
     font-style: normal;
     font-weight: 700;
-    src: url('../fonts/montserrat-bold.ttf') format('ttf');
+    src: url('../fonts/montserrat-bold.ttf');
 }
-@font-face {
-    font-family: 'MontSerrat';
-    font-style: normal;
-    font-weight: 800;
-    src: url('../fonts/montserrat-extrabold.ttf') format('ttf');
-}
+
 /**
  * Font Icons
  */
@@ -88,9 +77,9 @@
 body {
     color: @body;
     font-family: 'Merriweather', serif;
-    font-size: 0.8em;
+    font-size: 13px;
     font-weight: 300;
-    line-height: 2.0em;
+    line-height: 1.618;
     text-rendering: optimizeLegibility;
 }
 
@@ -108,8 +97,10 @@ code {
 }
 
 p {
-	margin: 0 0 30px 0;
-	text-align:justify;
+    margin: 0 0 30px 0;
+    .entry-content & {
+        text-align:justify;
+    }
 }
 
 hr {
@@ -164,7 +155,8 @@ abbr, acronym {
 
 a {
 	color: @link;
-    text-decoration:none;
+    text-decoration: none;
+    transition: all 350ms ease-out;
     &:hover {
         color:@hover; 
     }
@@ -181,12 +173,15 @@ h1, h2, h3, h4, h5, h6 {
     & a:hover {
         font-style: normal;
     }
+    .entry-content & {
+        margin-bottom: 0.25em;
+    }
 }
 
 h5, h6 {
     color: @body;
     font-weight: 300;
-	text-transform:uppercase;
+	text-transform: uppercase;
 }
 
 h1 {
@@ -194,19 +189,19 @@ h1 {
 } 
 
 h2 {
-	font-size: 2em;	
+	font-size: 2.4em;	
 }
 
 h3 {
-	font-size: 2em;
+	font-size: 1.9em;
 } 
 
 h4 {
-	font-size: 1.75em;
+	font-size: 1.6em;
 } 
 
 h5 {
-    font-size: 1.5em;
+    font-size: 1.4em;
     line-height: 200%;
 } 
 

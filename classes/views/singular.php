@@ -25,12 +25,13 @@ class Singular extends Template {
 
         // Page thumbnail
         $size                               = isset($this->data['customize']['main_width']) && $this->data['customize']['main_width'] > 970 ? 'linden-2x' : 'linden';
-        $this->properties['image']          = has_post_thumbnail($post->ID) ? get_the_post_thumbnail($post, $size, ['itemprop' => $image]) : false;
+        $this->properties['image']          = has_post_thumbnail($post->ID) ? get_the_post_thumbnail($post, $size, ['itemprop' => 'image']) : false;
 
         // Meta content
-        $this->meta                         = is_single() && ! $this->data['post_meta_disable'] ? new Components\Meta() : false;                 
+        $this->meta                         = is_single() && ! $this->data['customize']['post_meta_disable'] ? new Components\Meta() : false;                 
 
         // Content
+        $this->properties['id']             = get_the_ID();
         $this->properties['title']          = get_the_title();
         $this->properties['subtitle']       = $this->data['meta']['subtitle'];
         $this->properties['content']        = apply_filters( 'the_content', $post->post_content );
@@ -52,11 +53,13 @@ class Singular extends Template {
             $paged = get_query_var('paged') ? get_query_var('paged') : 1;
         }
 
+        $template = get_page_template_slug(get_queried_object_id());      
+
         // Retrieving the loop
-        if( is_page_template('Projects') ) {
+        if( $template == 'templates/portfolio.php' ) {
             $this->loop = new Components\Projects(['customize' => $this->data['customize'], 'query' => ['post_type' => 'portfolio', 'paged' => $paged]]);
-        } elseif( is_page_template('Blog') ) {
-            $this->loop = new Components\Posts(['customize' => $this->data['customize'], 'query' => ['paged' => $paged]]);
+        } elseif( $template == 'templates/blog.php' ) {
+            $this->loop = new Components\Posts(['customize' => $this->data['customize'], 'query' => ['paged' => $paged, 'post_type' => 'post']]);
         } else {
             $this->loop = false;
         }

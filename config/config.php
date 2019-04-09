@@ -65,10 +65,10 @@ $config = [
                     'fields'        => [
                         [
                             'choices'       => [
-                                'posts'     => __('Posts', 'linden'),
+                                'post'      => __('Posts', 'linden'),
                                 'portfolio' => __('Projects', 'linden')
                             ],
-                            'default'       => 'posts',
+                            'default'       => 'post',
                             'id'            => 'home_post_type',
                             'title'         => __('Post Type Homepage', 'linden'),
                             'description'   => __('Which post type do you want to show on the homepage? Only applies when the homepage shows the latest posts.', 'linden'),
@@ -179,14 +179,14 @@ $config = [
                             'type'          => 'checkbox'
                         ], 
                         [
-                            'default'       => __('Next Post'),
+                            'default'       => __('Next Post', 'linden'),
                             'id'            => 'post_pagination_next',
                             'title'         => __('Post Pagination Next', 'linden'),
                             'description'   => __('The text for next posts in the post navigation in single posts.', 'linden'),
                             'type'          => 'input'
                         ], 
                         [
-                            'default'       => __('Previous Post'),
+                            'default'       => __('Previous Post', 'linden'),
                             'id'            => 'post_pagination_previous',
                             'title'         => __('Post Pagination Previous', 'linden'),
                             'description'   => __('The text for previous posts in the post navigation in single posts.', 'linden'),
@@ -292,7 +292,15 @@ $config = [
                             'title'         => __('Font Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
-                        ],                  
+                        ], 
+                        [
+                            'default'       => '',
+                            'selector'      => ['selector' => 'body', 'property' => 'background-color'],
+                            'id'            => 'body_background_color',
+                            'title'         => __('Background Color', 'linden'),
+                            'transport'     => 'postMessage',
+                            'type'          => 'colorpicker'
+                        ],                   
                         [
                             'default'       => '',
                             'selector'      => 'h1, h2, h3, h4, h5, h6, .posts .entry-title a, .projects .entry-title a, .main-title a',
@@ -319,12 +327,12 @@ $config = [
                         ],
                         [
                             'default'       => '',
-                            'selector'      => 'blockquote',
+                            'selector'      => 'blockquote, blockquote p',
                             'id'            => 'blockquote_color',
                             'title'         => __('Blockquote Color', 'linden'),
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
-                        ],                       
+                        ]                                               
                     ]
                 ],
                 [
@@ -403,7 +411,7 @@ $config = [
                     'fields'    => [
                         [
                             'default'       => '',
-                            'selector'      => '.post .entry-header h1',
+                            'selector'      => '.post .entry-title',
                             'id'            => 'post_title_color',
                             'title'         => __('Page Title Colors', 'linden'),
                             'description'   => __('Adjusts the title colors for posts.', 'linden'),
@@ -436,7 +444,7 @@ $config = [
                     'fields'    => [                                        
                         [
                             'default'       => '',
-                            'selector'      => '.portfolio .entry-header h1',
+                            'selector'      => '.singular.portfolio .entry-header h1',
                             'id'            => 'portfolio_title_color',
                             'title'         => __('Projects Title Colors', 'linden'),
                             'description'   => __('Adjusts the title colors for projects.', 'linden'),
@@ -445,7 +453,7 @@ $config = [
                         ],
                         [
                             'default'       => '',
-                            'selector'      => '.portfolio .entry-content',
+                            'selector'      => '.singular.portfolio .entry-content',
                             'id'            => 'portfolio_content_color',
                             'title'         => __('Projects Content Colors', 'linden'),
                             'description'   => __('Adjusts the content text colors for projects.', 'linden'),
@@ -541,7 +549,7 @@ $config = [
                 ],
                 [
                     'id'         => 'typography_navigation',
-                    'title'     => __('Navigation Header', 'linden'),
+                    'title'     => __('Header', 'linden'),
                     'fields'    => [
                         [
                             'default'       => '',
@@ -594,7 +602,7 @@ $config = [
                     'fields'    => [
                         [
                             'default'       => '',
-                            'selector'      => '.post .entry-header h1',
+                            'selector'      => '.singular.post .entry-header h1',
                             'id'            => 'post_title_typography',
                             'title'         => __('Post Title Typography', 'linden'),
                             'description'   => __('The typography for the main title in pages.', 'linden'),
@@ -610,7 +618,7 @@ $config = [
                         ],                        
                         [
                             'default'       => '',
-                            'selector'      => '.post .entry-content',
+                            'selector'      => '.singular.post .entry-content',
                             'id'            => 'post_content_typography',
                             'title'         => __('Post Content Typography', 'linden'),
                             'description'   => __('The typography for the content in posts.', 'linden'),
@@ -640,7 +648,7 @@ $config = [
                     'fields'    => [
                         [
                             'default'       => '',
-                            'selector'      => '.portfolio .entry-header h1',
+                            'selector'      => '.singular.portfolio .entry-header h1',
                             'id'            => 'portfolio_title_typography',
                             'title'         => __('Projects Title Typography', 'linden'),
                             'description'   => __('The typography for the main title in projects.', 'linden'),
@@ -648,7 +656,7 @@ $config = [
                         ],
                         [
                             'default'       => '',
-                            'selector'      => '.portfolio .entry-header p',
+                            'selector'      => '.singular.portfolio .entry-header p',
                             'id'            => 'portfolio_subtitle_typography',
                             'title'         => __('Projects Title Typography', 'linden'),
                             'description'   => __('The typography for the subtitles in projects.', 'linden'),
@@ -656,7 +664,7 @@ $config = [
                         ],                        
                         [
                             'default'       => '',
-                            'selector'      => '.portfolio .entry-content',
+                            'selector'      => '.singular.portfolio .entry-content',
                             'id'            => 'portfolio_content_typography',
                             'title'         => __('Page Content Typography', 'linden'),
                             'description'   => __('The typography for the content in projects.', 'linden'),

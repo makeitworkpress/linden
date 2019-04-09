@@ -137,10 +137,7 @@ class Linden {
          */
         add_theme_support( 'html5', ['comment-list', 'comment-form', 'search-form', 'caption'] );	
         add_theme_support( 'post-thumbnails' );
-        add_theme_support( 'title-tag' );  
-        
-        // Adjusted thumbnail size
-        set_post_thumbnail_size( 270, 180, true );
+        add_theme_support( 'title-tag' );
         
         /**
          * Flush permalinks after switching to this theme

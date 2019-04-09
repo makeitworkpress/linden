@@ -14,7 +14,7 @@
             
             <article id="post-0" class="post error404 not-found postitem">
                 <header class="entry-header"> 
-                    <h1 class="entry-title"><?php _e( 'Not Found', 'linden' ); ?></h1>
+                    <h2 class="entry-title"><?php _e( 'Nothing Found', 'linden' ); ?></h2>
                 </header>
                 <div class="entry-content">
                     <p><?php _e( 'Apologies, but no results were found for the requested archive.', 'linden' ); ?></p>
@@ -38,14 +38,14 @@
                                 <?php echo $post['title']; ?>
                             </a>
                         </h2>
-                        <?php if( $post['meta'] ) { echo $post['meta']; } ?>
+                        <?php if( $post['meta'] ) { $post['meta']->render(); } ?>
                     </header>
                     <div class="entry-content" itemprop="text">
                         <?php echo $post['excerpt']; ?>
                     </div>
                     <?php if( $post['more'] ) { ?>
                         <footer class="entry-footer">
-                            <a href="<?php echo $post['link']; ?>" rel="bookmark" title="<?php echo $post['title_attr']; ?>">
+                            <a class="read-more" href="<?php echo $post['link']; ?>" rel="bookmark" title="<?php echo $post['title_attr']; ?>">
                                 <?php echo $post['more'] ?>
                             </a>  	
                         </footer>

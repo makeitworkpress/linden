@@ -4,7 +4,7 @@
  */
 ?>
 
-<nav class="post-navigation">
+<nav class="navigation-<?php echo $pagination['type']; ?>">
     <?php 
         // Archive pagination 
         if( $pagination['type'] == 'archive' ) {

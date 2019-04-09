@@ -3,6 +3,7 @@
  * Prepares the variables that are used in our comments component template
  */
 namespace Views\Components;
+use WP_Query as WP_Query;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
@@ -33,15 +34,15 @@ class Posts extends Component {
         } else {
             global $wp_query;
         }
-
+        
         // There is nothing queried
-        if( ! isset($wp_query) || ! isset($wp_query->query->posts) ) {
+        if( ! isset($wp_query) || ! isset($wp_query->posts) ) {
             return;
         }
 
         $size = $this->atts['customize']['container_width'] > 490 ? 'linden' : 'linden-s';
 
-        foreach( $wp_query->query->posts as $post ) {
+        foreach( $wp_query->posts as $post ) {
             $this->properties['posts'][$post->ID] = [ 
                 'class'         => implode(' ', array_filter(get_post_class('post-item', $post->ID)) ),
                 'excerpt'       => $this->excerpt($post),
@@ -55,7 +56,7 @@ class Posts extends Component {
         }
 
         // Set-up the pagination
-        if( $wp_query->query->max_num_pages > 1 ) {
+        if( $wp_query->max_num_pages > 1 ) {
             $this->properties['pagination'] = new Pagination(['query' => $wp_query, 'type' => 'archive']); 
         }         
 

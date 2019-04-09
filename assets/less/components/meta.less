@@ -1,1 +1,26 @@
 // main: ../linden.less
+
+/**
+ * Meta Components Styling
+ */
+.entry-meta {
+	color: @link;
+	font-size: 0.9em;
+    font-family: 'MontSerrat', Arial, sans-serif;
+    font-weight: 300;
+    text-align: center;
+    a {
+        color: @dark;
+        &:hover {
+            color: @focus;
+        }
+    }
+    .single-meta {
+        display: inline-block;
+        margin-right: 5px;
+        vertical-align: top;
+        i {
+            margin-right: 3px;
+        }
+    }
+}

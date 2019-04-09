@@ -1,16 +1,38 @@
 // main: linden.less
+
+/**
+ * Navigation Header Styling
+ */
 .header {
+    align-content: center;
+    display: flex;
+    flex-wrap: wrap;
     height: 100%;
     padding: 40px;
     position: fixed;
     width: 260px;
+    z-index: 4;
+}
+
+/**
+ * Branding
+ */
+.logo {
+    display: block;
+    margin: 40px 0 10px 0;
+    text-align: center;
+    width: 100%;
 }
 
 .site-title {
+    text-align: center;
     text-transform: uppercase;
+    width: 100%;
     h2 {
-        font-size: 1.4375em;
+        font-size: 2em;
         font-family: 'LaneNarrow', serif; 
+        font-weight: 100;
+        margin-bottom: 5px;
         a:hover {
             color: @hover;
         }
@@ -18,5 +40,61 @@
     p {
         color: @dark;
         font-family: 'LaneNarrow', serif; 
+        font-size: 12px;
+        font-weight: 600;
+    }
+}
+
+.main-navigation {
+	border-top: 1px solid #444;
+	padding: 30px 0;
+    text-align:center;
+    width: 100%;
+    ul {
+        list-style: none;
+        text-transform:uppercase;
+        li a {
+            color: @heading;
+            font-family: 'MontSerrat', serif;
+            font-size: 1.4em;
+            font-weight: 500;
+            padding: 5px 0px;
+            &:hover {
+                color: @focus;
+            }
+        }
+        .current_page_item > a, .current_page_ancestor > a {
+            color: @focus;
+        }
+        ul a {
+            color: @body;
+            font-size: 1.1em;
+        }
+    }
+}
+
+/**
+ * Navigation Menu 
+ */
+.hamburger-menu {
+    font-size: 1.4em;
+    left: 40px;
+    position: absolute;
+    top: 40px;
+}
+
+@media screen and (max-width: 1024px) {
+    .header-tablets {
+        .hamburger-menu {
+            display: block;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header-phones {
+        .hamburger-menu {
+            display: block;
+        }
     }
 }

@@ -1,1 +1,56 @@
 // main: ../linden.less
+
+
+/*
+Post-Caption @PROCESS
+*/
+.caption {
+	background: #fff; /* for crappy browsers */ 
+	background:rgba(255,255,255,0.9);
+	border-radius: 130px;
+	display:block;
+	padding: 80px 40px;
+	position:absolute;
+	right: 355px;
+	top:155px;
+	overflow:hidden;
+	text-align:center;
+	text-transform:uppercase;
+	z-index:5;
+	width:180px; 	
+	height: 100px;
+	/* transitions */
+	transition: 250ms ease-out; 
+	-webkit-transition: all 1250ms ease-out;
+	-moz-transition: all 1250ms ease-out; 
+	-ms-transition: all 1250ms ease-out;
+	-o-transition: all 1250ms ease-out; 
+	cursor: pointer;
+}
+.caption:hover {
+	background: #fff; /* for crappy browsers */
+	background:rgba(255,255,255,0.0); 
+}
+.caption:hover h2 , .caption:hover h6 {
+	color: rgba(255,255,255,0.0);
+}
+.caption h2 {
+	font-family: 'Montserrat', serif;
+	font-weight: 700; 
+	line-height: 120%;
+	/*text-transform:uppercase;*/
+	color:#222;
+	font-size: 24px;
+	max-width: 200px;
+	z-index: 6;
+
+	
+}
+
+.sub-title {
+    color: @link;
+    font-family: 'MontSerrat', serif;
+    font-size: 0.9em;
+    font-weight: 300;
+    text-transform: uppercase;     
+}

@@ -4,7 +4,7 @@
  */
 $singular = new Views\Singular(); 
 $singular->header(); ?>
-<article id="post-<?php echo $singular->properties['id']; ?>" <?php post_class(); ?> <?php echo $singular->properties['scheme']; ?>>
+<article id="post-<?php echo $singular->properties['id']; ?>" <?php post_class('singular'); ?> <?php echo $singular->properties['scheme']; ?>>
     
     <?php  if ( $singular->properties['image'] ) { ?>
         <meta itemprop="image" content="<?php echo get_the_post_thumbnail_url( $singular->properties['id'], 'large' ); ?>" />
@@ -19,7 +19,7 @@ $singular->header(); ?>
         <div class="container">
             <h1 class="entry-title" itemprop="name"><?php echo $singular->properties['title']; ?></h1>
             <?php if( $singular->properties['subtitle'] ) { ?>
-                <p class="subtitle"<?php echo $singular->properties['subtitle']; ?> ></p>
+                <p class="sub-title"<?php echo $singular->properties['subtitle']; ?> ></p>
             <?php } ?> 
             
             <?php if( $singular->meta ) {  $singular->meta->render(); } ?>

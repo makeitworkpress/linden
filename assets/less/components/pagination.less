@@ -1,1 +1,31 @@
 // main: ../linden.less
+.navigation-single {
+    font-size: 0.9em;  
+    margin: 0 0 40px 0; 
+    overflow: hidden;
+    text-transform: uppercase;
+    a {
+        position: relative;
+        width: 50%;
+    }
+    a[rel="prev"] {
+        float: left;
+        left: 0;
+        padding: 0 10px 0 0;
+        &:hover {
+            left: -5px;
+        }       
+    }
+    a[rel="next"] {
+        float: right;
+        padding: 0 0 0 10px;
+        text-align: right; 
+        right: 0;
+        &:hover {
+            right: -5px;
+        }  
+    }
+    span {
+        margin: 5px;
+    }
+}

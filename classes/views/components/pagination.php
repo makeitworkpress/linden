@@ -52,7 +52,7 @@ class Pagination extends Component {
                 'current'       => $paged,
                 'next_text'     => '&raquo;', 
                 'prev_text'     => '&laquo;',
-                'total'         => $this->atts['query']->query->max_num_pages                      
+                'total'         => $this->atts['query']->max_num_pages                      
             ] );             
 
         } elseif( $this->atts['type'] == 'single' ) {
