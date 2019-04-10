@@ -41,7 +41,7 @@ $header = new Views\Header();
             <?php } ?> 
             <nav class="main-navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
                 <?php wp_nav_menu( ['container_class' => 'menu-header', 'theme_location' => 'primary'] ); ?>
-                <a class="hamburger-menu"><i class="icon-bars"></i></a>
             </nav><!-- .main-navigation --> 
         </header><!-- .header --> 
+        <a class="hamburger-menu" href="#"><i class="icon-bars"></i></a>
         <main class="main" id="main" <?php echo $header->properties['main_scheme'] ?>>

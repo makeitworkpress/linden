@@ -2,17 +2,13 @@
 /**
  * The template file that renders the slideshow
  */
-?>
+if( ! $slider['slides'] ) {
+    return;
+} ?>
 <ul class="entry-slider">
     <?php foreach($slider['slides'] as $slide ) { ?>
         <li class="slide">
-            <?php if($slide['video']) { ?>
-                <div class="video-container">
-                    <?php echo $slide['video']; ?>
-                </div>
-            <?php } elseif($slide['image']) { ?>
-                <?php echo $slide['image']; ?>
-            <?php } ?>
+            <?php echo $slide; ?>
         </li>
     <?php } ?>
 </ul><!-- .entry-slider -->

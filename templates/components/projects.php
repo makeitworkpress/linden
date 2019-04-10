@@ -9,7 +9,7 @@
     <?php if ( ! $projects['posts'] ) { ?>
         
         <article id="portfolio-0" class="portfolio error404 not-found container">
-            <header class="post-header"> 
+            <header class="entry-header"> 
                 <h2 class="entry-title"><?php _e( 'Nothing Found', 'linden' ); ?></h2>
             </header>
             <div class="entry-content">
@@ -31,7 +31,7 @@
                         <?php } ?>
                     </a>
                     <?php if( $post['image'] ) { ?>
-                        <figure class="post-image">
+                        <figure class="entry-image">
                             <a href="<?php echo $post['link']; ?>" rel="bookmark" title="<?php echo $post['title_attr']; ?>">
                                 <?php echo $post['image']; ?>
                             </a>
@@ -41,7 +41,7 @@
             </article>
         <?php } ?>
         
-        <?php if ( $projects['pagination'] ) { echo $projects['pagination']; } ?>
+        <?php if ( $projects['pagination'] ) { $projects['pagination']->render(); } ?>
     
     <?php } ?>
 

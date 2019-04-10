@@ -3,10 +3,11 @@
 $config = [
     'enqueue' => [
         ['handle' => 'linden', 'src' => get_template_directory_uri() . '/assets/css/linden.min.css'],    
-        ['handle' => 'tinyslider', 'src' => get_template_directory_uri() . '/assets/js/vendor/tinyslider.min.js', 'action' => 'register'],
+        ['handle' => 'tinyslider', 'src' => get_template_directory_uri() . '/assets/js/vendor/tinyslider.min.js', 'in_footer' => true],
         [
             'handle'    => 'linden', 
-            'src'       => get_template_directory_uri() . '/assets/js/linden.min.js', 
+            'src'       => get_template_directory_uri() . '/assets/js/linden.js', 
+            'in_footer' => true,
             'name'      => 'linden', 
             'localize'  => ['ajax' => admin_url( 'admin-ajax.php' ), 'nonce' => wp_create_nonce("redvelvetcake")]
         ]        

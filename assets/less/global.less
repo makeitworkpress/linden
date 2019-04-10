@@ -17,28 +17,26 @@ body {
 /**
  * Images
  */
-img {
-	height: auto;
-	max-width: 100%;	
-	figure & {
-		display: block;
-	}
+figure img {
+    display: block;
+    margin: 0;
 }
 
 img, figure {
     height: auto;
+    margin-bottom: 20px;
     max-width: 100%;   
     &.alignright {
         float: right; 
-        margin: 0 0 30px 30px;
+        margin: 0 0 20px 20px;
     } 
     &.alignleft {
         float: left; 
-        margin: 0 30px 30px 0;
+        margin: 0 20px 20px 0;
     }
     &.aligncenter {
         display: block; 
-        margin: 0 auto 30px auto;
+        margin: 0 auto 20px auto;
     }    
 }
 

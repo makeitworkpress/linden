@@ -27,7 +27,7 @@
                 <article id="post-<?php echo $id; ?>" class="<?php echo $post['class']; ?>" itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
                     <header class="post-header"> 
                         <?php if( $post['image'] ) { ?>
-                            <figure class="post-image">
+                            <figure class="entry-image">
                                 <a href="<?php echo $post['link']; ?>" rel="bookmark" title="<?php echo $post['title_attr']; ?>" itemprop="url">
                                     <?php echo $post['image'] ?>
                                 </a>
@@ -53,7 +53,7 @@
                 </article>
             <?php } ?>
 
-            <?php if ( $posts['pagination'] ) { echo $posts['pagination']; } ?>
+            <?php if ( $posts['pagination'] ) { $posts['pagination']->render(); } ?>
     
         <?php } ?>
 

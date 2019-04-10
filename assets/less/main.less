@@ -7,24 +7,27 @@
     background: #fff;
     left: 260px;
     max-width: 970px;
-    min-height: 570px;
+    min-height: calc(~"100vh - 40px");
     position: relative;
-    width: 100%;    
+    width: calc(~"100% - 260px");
 }
 
 .header-always ~ .main {
     left: 0;
+    width: 100%;
 }
 
 @media screen and (max-width: 1024px) {
     .header-tablets ~ .main {
         left: 0;
+        width: 100%;
     }
 }
 
 @media screen and (max-width: 767px) {
     .header-phones ~ .main {
         left: 0;
+        width: 100%;
     }
 }
 
@@ -33,12 +36,10 @@
  */
 .singular, .archive {
     > .entry-header h1 {
+        margin: 0;
         padding: 40px 0 10px 0;
+        text-align: center;
     }
-}
-
-.singular > .entry-header h1 {
-    text-align: center;
 }
 
 .singular.portfolio > .entry-header h1 {

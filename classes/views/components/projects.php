@@ -36,19 +36,19 @@ class Projects extends Component {
         }
 
         // There is nothing queried
-        if( ! isset($wp_query) || ! isset($wp_query->query->posts) ) {
+        if( ! isset($wp_query) || ! isset($wp_query->posts) ) {
             return;
         }
 
         // @to extend - Add multiple column support for a grid based lay-out
-        $size = $this->atts['customize']['main_width'] > 970 ? 'linden-2x' : 'linden';
+        $size = isset($this->atts['customize']['main_width']) && $this->atts['customize']['main_width'] > 970 ? 'linden-2x' : 'linden';
 
-        foreach( $wp_query->query->posts as $post ) {
+        foreach( $wp_query->posts as $post ) {
 
-            $meta               = get_post_meta($post, 'linden_meta', true);
+            $meta               = get_post_meta($post->ID, 'linden_post_meta', true);
 
             $this->properties['posts'][$post->ID] = [ 
-                'class'         => implode(' ', array_filter(get_post_class('project-item ' . $this->atts['customize']['portfolio_archive_columns'], $post->ID)) ),
+                'class'         => implode(' ', array_filter(get_post_class('project-item', $post->ID)) ),
                 'image'         => has_post_thumbnail($post) ? get_the_post_thumbnail( $post, $size, ['itemprop' => 'image'] ) : false, 
                 'link'          => esc_url( get_permalink($post) ),   
                 'subtitle'      => isset($meta['subtitle']) && $meta['subtitle'] ? $meta['subtitle'] : '',
@@ -58,7 +58,7 @@ class Projects extends Component {
         }
 
         // Set-up the pagination
-        if( $wp_query->query->max_num_pages > 1 ) {
+        if( $wp_query->max_num_pages > 1 ) {
             $this->properties['pagination'] = new Pagination(['query' => $wp_query, 'type' => 'archive']); 
         }         
 

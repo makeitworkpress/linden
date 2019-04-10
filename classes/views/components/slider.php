@@ -16,7 +16,7 @@ class Slider extends Component {
     public function init() {
         
         // Our attributes
-		$this->defaults			= ['customize' => ['main_width' => 0], 'meta' => ['slider' => []]];
+		$this->defaults		= ['customize' => ['main_width' => 0], 'meta' => ['slider' => []]];
 		$this->properties 	= ['slides' => []];
 
     }
@@ -28,20 +28,23 @@ class Slider extends Component {
      */
     public function populate() {
 
-		global $post;
+		if( isset($this->atts['meta']['slider']) && is_array($this->atts['meta']['slider']) ) {
 
-		$size = $this->atts['customize']['main_width'] > 970 ? 'linden-2x' : 'linden';
+			$size = isset($this->atts['customize']['main_width']) && $this->atts['customize']['main_width'] > 970 ? 'linden-2x' : 'linden';
 
-		foreach( $this->atts['slider'] as $slide ) {
-			if( $slide['video'] ) {
-				$this->properties['slides'][] = $this->formatVideo( $slide['video'] );
-			} elseif( $slide['image'] && is_numeric(rtrim($slide['image'], ',')) ) {
-				$this->properties['slides'][] = wp_get_attachment_image( rtrim($slide['image'], ','), $size, '', ['itemprop' => 'image']); 	
+			foreach( $this->atts['meta']['slider'] as $slide ) {
+				
+				if( $slide['video'] ) {
+					$this->properties['slides'][] = $this->formatVideo( $slide['video'] );
+				} elseif( $slide['image'] && is_numeric(rtrim($slide['image'], ',')) ) {
+					$this->properties['slides'][] = '<figure class="entry-image">' . wp_get_attachment_image( rtrim($slide['image'], ','), $size, '', ['itemprop' => 'image']) . '</figure>'; 	
+				}
 			}
-		}
 
-		// Make sure there are no empty slides
-		$this->properties['slides'] = array_filter($this->properties['slides']);
+			// Make sure there are no empty slides
+			$this->properties['slides'] = array_filter($this->properties['slides']);
+
+		}
 
 	}
 	
@@ -53,8 +56,9 @@ class Slider extends Component {
 	 */
 	private function formatVideo( $src = '' ) {
 
-        $height = $this->atts['customize']['main_width'] ? $this->atts['customize']['main_width']/1.70 : 570;
-        $width  = $this->atts['customize']['main_width'] ? $this->atts['customize']['main_width'] : 970;
+		$height = isset($this->atts['customize']['main_width']) && $this->atts['customize']['main_width'] ? $this->atts['customize']['main_width']/1.70 : 570;
+		$video	= '';
+        $width  = isset($this->atts['customize']['main_width']) && $this->atts['customize']['main_width'] ? $this->atts['customize']['main_width'] : 970;
 
 		// Youtube and Vimeo video's
 		if( preg_match('#^https?://(?:www\.)?(?:youtube\.com/watch|youtu\.be/)#', $src) || preg_match('#^https?://(.+\.)?vimeo\.com/.*#', $src) ) {
@@ -67,9 +71,9 @@ class Slider extends Component {
 
 			if( strpos($src, 'vimeo.com') !== false ) {
 				$src          = 'https://player.vimeo.com/video' . parse_url($src)['path'];
-			} 
+			}
 			
-			$video        = '<div class="wp-video" itemprop="video" itemscope="itemscope" itemtype="http://schema.org/VideoObject"><iframe width="' . $width . '" height="' . $height . '"' . $src . ' frameborder="0" allowfullscreen="true"></iframe></div>';
+			$video        = '<div class="wp-video" itemprop="video" itemscope="itemscope" itemtype="http://schema.org/VideoObject"><iframe width="' . $width . '" height="' . $height . '" src="' . $src . '" frameborder="0" allowfullscreen="true"></iframe></div>';
 		
 		// Regular video's
 		} else {

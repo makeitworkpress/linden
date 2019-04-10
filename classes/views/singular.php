@@ -21,7 +21,7 @@ class Singular extends Template {
         $this->properties['text_scheme']    = is_singular('post') ? 'articleBody' : 'text';
 
         // Slider
-        $this->slider                       = is_singular('projects') ? new Components\Slider(['customize' => $this->data['customize'], 'meta' => $this->data['meta']]) : false;
+        $this->slider                       = isset($this->data['meta']['slider']) && $this->data['meta']['slider'] ? new Components\Slider(['customize' => $this->data['customize'], 'meta' => $this->data['meta']]) : false;
 
         // Page thumbnail
         $size                               = isset($this->data['customize']['main_width']) && $this->data['customize']['main_width'] > 970 ? 'linden-2x' : 'linden';

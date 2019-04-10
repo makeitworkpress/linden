@@ -40,7 +40,7 @@ class Posts extends Component {
             return;
         }
 
-        $size = $this->atts['customize']['container_width'] > 490 ? 'linden' : 'linden-s';
+        $size = isset($this->atts['customize']['container_width']) && $this->atts['customize']['container_width'] > 490 ? 'linden' : 'linden-s';
 
         foreach( $wp_query->posts as $post ) {
             $this->properties['posts'][$post->ID] = [ 

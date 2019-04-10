@@ -205,6 +205,35 @@ class Linden {
             $wp_customize->get_section( 'static_front_page' )->title    = __('Homepage', 'linden');
         }, 20, 1 );
 
+        
+        /**
+         * Adds custom margin for the header when we have a custom header width
+         */
+        if( isset($this->data['customize']['header_width']) && $this->data['customize']['header_width'] ) {
+            $width = $this->data['customize']['header_width'];
+            add_action('wp_head', function() use($width) {
+
+                if( isset($width['value']) && $width['value'] && isset($width['unit']) && $width['unit'] ) {
+                    echo '<style type="text/css"> 
+                        .main {
+                            width: calc(100% - ' . $width['value'] . $width['unit'] . ');
+                        }
+                        @media screen and (max-width: 1024px) {
+                            .header-tablets {
+                                margin-left: - ' . $width['value'] . $width['unit'] . ';
+                            } 
+                        }
+                        @media screen and (max-width: 767px) {
+                            .header-phones {
+                                margin-left: - ' . $width['value'] . $width['unit'] . ';
+                            } 
+                        }                        
+                    </style>';
+                }
+
+            });
+        }
+
     }
 
     /** 
