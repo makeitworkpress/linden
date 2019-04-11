@@ -56,9 +56,9 @@ class Slider extends Component {
 	 */
 	private function formatVideo( $src = '' ) {
 
-		$height = isset($this->atts['customize']['main_width']) && $this->atts['customize']['main_width'] ? $this->atts['customize']['main_width']/1.70 : 570;
+		$height = isset($this->atts['customize']['main_width']['amount']) && $this->atts['customize']['main_width']['amount'] && isset($this->atts['customize']['main_width']['unit']) && $this->atts['customize']['main_width']['unit'] == 'px' ? $this->atts['customize']['main_width']['amount']/1.70175438596 : 570;
 		$video	= '';
-        $width  = isset($this->atts['customize']['main_width']) && $this->atts['customize']['main_width'] ? $this->atts['customize']['main_width'] : 970;
+        $width  = isset($this->atts['customize']['main_width']['amount']) && $this->atts['customize']['main_width']['amount'] && isset($this->atts['customize']['main_width']['unit']) && $this->atts['customize']['main_width']['unit'] == 'px' ? $this->atts['customize']['main_width']['amount'] : 970;
 
 		// Youtube and Vimeo video's
 		if( preg_match('#^https?://(?:www\.)?(?:youtube\.com/watch|youtu\.be/)#', $src) || preg_match('#^https?://(.+\.)?vimeo\.com/.*#', $src) ) {

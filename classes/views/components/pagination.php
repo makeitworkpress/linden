@@ -41,15 +41,9 @@ class Pagination extends Component {
 
         if( $this->atts['type'] == 'archive' && isset($this->atts['query']) ) {
 
-            if( is_front_page() ) {
-                $paged = get_query_var('page') ? get_query_var('page') : 1;
-            } else {
-                $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-            }            
-
             $this->properties['numbers'] = paginate_links( [
                 'base'          => str_replace(999999999, '%#%', get_pagenum_link(999999999)),
-                'current'       => $paged,
+                'current'       => get_query_var('paged') ? get_query_var('paged') : 1,
                 'next_text'     => '&raquo;', 
                 'prev_text'     => '&laquo;',
                 'total'         => $this->atts['query']->max_num_pages                      

@@ -8,15 +8,15 @@ $nothing = new Views\Nothing();
 
 $nothing->header(); ?>
 
-<article id="post-0" class="page error404 not-found">
+<article id="post-0" class="singular page error404 not-found container">
     <header class="entry-header">
-        <h1><?php echo $this->properties['title']; ?></h1>
+        <h1><?php echo $nothing->properties['title']; ?></h1>
     </header><!-- .entry-header -->
     <div class="entry-content">
-        <?php if($this->properties['description']) { ?>
-            <p><?php echo $this->properties['description']; ?></p>
+        <?php if($nothing->properties['description']) { ?>
+            <p><?php echo $nothing->properties['description']; ?></p>
         <?php } ?>
-        <?php get_search_form(); ?>
+        <?php // get_search_form(); ?>
     </div><!-- .entry-content -->
 </article><!-- #post-0 -->
 

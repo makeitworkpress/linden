@@ -64,7 +64,8 @@ class Linden {
          * Load some required data
          */
         $this->data     = [
-            'customize' => get_theme_mod('linden_customizer'),
+            'customize' => get_theme_mod('linden_layout'),
+            'general'   => get_theme_mod('linden_general'),
             'options'   => get_option('linden_options')
         ];
 
@@ -213,19 +214,22 @@ class Linden {
             $width = $this->data['customize']['header_width'];
             add_action('wp_head', function() use($width) {
 
-                if( isset($width['value']) && $width['value'] && isset($width['unit']) && $width['unit'] ) {
+                if( isset($width['amount']) && $width['amount'] && isset($width['unit']) && $width['unit'] ) {
                     echo '<style type="text/css"> 
                         .main {
-                            width: calc(100% - ' . $width['value'] . $width['unit'] . ');
+                            width: calc(100% - ' . $width['amount'] . $width['unit'] . ');
                         }
+                        .header-always {
+                            margin-left: - ' . $width['amount'] . $width['unit'] . ';
+                        }                         
                         @media screen and (max-width: 1024px) {
                             .header-tablets {
-                                margin-left: - ' . $width['value'] . $width['unit'] . ';
+                                margin-left: - ' . $width['amount'] . $width['unit'] . ';
                             } 
                         }
                         @media screen and (max-width: 767px) {
                             .header-phones {
-                                margin-left: - ' . $width['value'] . $width['unit'] . ';
+                                margin-left: - ' . $width['amount'] . $width['unit'] . ';
                             } 
                         }                        
                     </style>';
@@ -233,6 +237,18 @@ class Linden {
 
             });
         }
+
+        /**
+         * Modifies the post queried if our homepage is set to projects
+         */
+        if( isset($this->data['general']['home_post_type']) && $this->data['general']['home_post_type'] == 'portfolio' ) {
+            add_action( 'pre_get_posts', function($query) {
+                $template = get_page_template_slug( get_queried_object_id() );
+                if( $query->is_home && ! $template ) {
+                    $query->set('post_type', 'portfolio');
+                }
+            } );
+        }           
 
     }
 

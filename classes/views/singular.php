@@ -28,7 +28,7 @@ class Singular extends Template {
         $this->properties['image']          = has_post_thumbnail($post->ID) ? get_the_post_thumbnail($post, $size, ['itemprop' => 'image']) : false;
 
         // Meta content
-        $this->meta                         = is_single() && ! $this->data['customize']['post_meta_disable'] ? new Components\Meta() : false;                 
+        $this->meta                         = is_singular('post') && ! $this->data['customize']['post_meta_disable'] ? new Components\Meta() : false;    
 
         // Content
         $this->properties['id']             = get_the_ID();
@@ -47,11 +47,7 @@ class Singular extends Template {
          */
 
         // Pagination
-        if( is_front_page() ) {
-            $paged = get_query_var('page') ? get_query_var('page') : 1;
-        } else {
-            $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-        }
+        $paged = get_query_var('paged') ? get_query_var('paged') : 1;
 
         $template = get_page_template_slug(get_queried_object_id());      
 

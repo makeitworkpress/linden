@@ -6,7 +6,7 @@ $config = [
         ['handle' => 'tinyslider', 'src' => get_template_directory_uri() . '/assets/js/vendor/tinyslider.min.js', 'in_footer' => true],
         [
             'handle'    => 'linden', 
-            'src'       => get_template_directory_uri() . '/assets/js/linden.js', 
+            'src'       => get_template_directory_uri() . '/assets/js/linden.min.js', 
             'in_footer' => true,
             'name'      => 'linden', 
             'localize'  => ['ajax' => admin_url( 'admin-ajax.php' ), 'nonce' => wp_create_nonce("redvelvetcake")]
@@ -91,7 +91,7 @@ $config = [
                     'fields'    => [
                         [
                             'default'       => '',
-                            'selector'      => ['selector' => '.header', 'property' => '.max-width'],
+                            'selector'      => ['selector' => '.header', 'property' => 'max-width'],
                             'id'            => 'header_width',
                             'title'         => __('Navigation Header Maximum Width', 'linden'),
                             'description'   => __('Sets a custom width for the navigation header.', 'linden'),
@@ -99,7 +99,7 @@ $config = [
                         ],
                         [
                             'default'       => '',
-                            'selector'      => ['selector' => '.main', 'property' => '.max-width'],
+                            'selector'      => ['selector' => '.main', 'property' => 'max-width'],
                             'id'            => 'main_width',
                             'title'         => __('Main Area Maximum Width', 'linden'),
                             'description'   => __('Sets a custom width for the main area.', 'linden'),
@@ -107,7 +107,7 @@ $config = [
                         ],
                         [
                             'default'       => '',
-                            'selector'      => ['selector' => '.container', 'property' => '.max-width'],
+                            'selector'      => ['selector' => '.container', 'property' => 'max-width'],
                             'id'            => 'container_width',
                             'title'         => __('Container Maximum Width', 'linden'),
                             'description'   => __('Sets a custom width for containers centering all textual content.', 'linden'),
@@ -350,7 +350,7 @@ $config = [
                         ],                                  
                         [
                             'default'       => '',
-                            'selector'      => '.main-navigation a',
+                            'selector'      => '.main-navigation ul li a',
                             'id'            => 'header_link_color',
                             'title'         => __('Navigation Link Color', 'linden'),
                             'transport'     => 'postMessage',
@@ -358,7 +358,7 @@ $config = [
                         ],
                         [
                             'default'       => '',
-                            'selector'      => '.main-navigation a:hover, .main-navigation .current-menu-item > a',
+                            'selector'      => '.main-navigation ul li a:hover, .main-navigation ul li.current-menu-item > a',
                             'id'            => 'header_link_hover_color',
                             'title'         => __('Navigation Hover & Active Color', 'linden'),
                             'transport'     => 'postMessage',
@@ -366,7 +366,7 @@ $config = [
                         ],
                         [
                             'default'       => '',
-                            'selector'      => ['selector' => '.main-navigation a:hover, .main-navigation .current-menu-item > a', 'property' => 'background-color'],
+                            'selector'      => ['selector' => '.main-navigation ul li a:hover, .main-navigation ul li.current-menu-item > a', 'property' => 'background-color'],
                             'id'            => 'header_link_hover_background_color',
                             'title'         => __('Navigation Hover & Active Background Color', 'linden'),
                             'transport'     => 'postMessage',
@@ -374,7 +374,7 @@ $config = [
                         ],
                         [
                             'default'       => '',
-                            'selector'      => '.main-navigation .hamburger-menu',
+                            'selector'      => '.hamburger-menu',
                             'id'            => 'header_hamburger_color',
                             'title'         => __('Navigation Hamburger Menu Color', 'linden'),
                             'transport'     => 'postMessage',
@@ -412,7 +412,7 @@ $config = [
                     'fields'    => [
                         [
                             'default'       => '',
-                            'selector'      => '.post .entry-title',
+                            'selector'      => '.post .entry-title, .post .entry-title a',
                             'id'            => 'post_title_color',
                             'title'         => __('Page Title Colors', 'linden'),
                             'description'   => __('Adjusts the title colors for posts.', 'linden'),
@@ -428,6 +428,24 @@ $config = [
                             'transport'     => 'postMessage',
                             'type'          => 'colorpicker'
                         ],
+                        [
+                            'default'       => '',
+                            'selector'      => '.entry-meta a',
+                            'id'            => 'entry_meta_link_color',
+                            'title'         => __('Entry Meta Link Colors', 'linden'),
+                            'description'   => __('Adjusts the link color for post meta, such as the date, and category a post is in.', 'linden'),
+                            'transport'     => 'postMessage',
+                            'type'          => 'colorpicker'
+                        ],
+                        [
+                            'default'       => '',
+                            'selector'      => '.entry-meta a:hover',
+                            'id'            => 'entry_meta_hover_color',
+                            'title'         => __('Entry Meta Link Hover Colors', 'linden'),
+                            'description'   => __('Adjusts the link hover color for post meta, such as the date, and category a post is in.', 'linden'),
+                            'transport'     => 'postMessage',
+                            'type'          => 'colorpicker'
+                        ],                                                
                         [
                             'default'       => '',
                             'selector'      => '.post .entry-content',
@@ -454,6 +472,15 @@ $config = [
                         ],
                         [
                             'default'       => '',
+                            'selector'      => '.singular.portfolio .sub-title',
+                            'id'            => 'portfolio_subtitle_color',
+                            'title'         => __('Projects Subtitle Colors', 'linden'),
+                            'description'   => __('Adjusts the subtitle colors for projects.', 'linden'),
+                            'transport'     => 'postMessage',
+                            'type'          => 'colorpicker'
+                        ],                        
+                        [
+                            'default'       => '',
                             'selector'      => '.singular.portfolio .entry-content',
                             'id'            => 'portfolio_content_color',
                             'title'         => __('Projects Content Colors', 'linden'),
@@ -472,7 +499,16 @@ $config = [
                         ],
                         [
                             'default'       => '',
-                            'selector'      => ['.projects .entry-header', 'selector' => 'background-color'],
+                            'selector'      => '.projects .sub-title',
+                            'id'            => 'portfolio_archive_subtitle_color',
+                            'title'         => __('Projects Archive Subtitle Colors', 'linden'),
+                            'description'   => __('Adjusts the subtitle colors for projects in archives.', 'linden'),
+                            'transport'     => 'postMessage',
+                            'type'          => 'colorpicker'
+                        ],                        
+                        [
+                            'default'       => '',
+                            'selector'      => ['.project-caption', 'selector' => 'background-color'],
                             'id'            => 'portfolio_archive_overlay_color',
                             'title'         => __('Projects Archive Title Background Color', 'linden'),
                             'description'   => __('Adjusts the title background color for projects in archives.', 'linden'),
@@ -487,7 +523,7 @@ $config = [
                     'fields'    => [
                         [
                             'default'       => '',
-                            'selector'      => ['.footer', 'selector' => 'background-color'],
+                            'selector'      => ['selector' => '.footer', 'property' => 'background-color'],
                             'id'            => 'footer_background',
                             'title'         => __('Footer Background Color', 'linden'),
                             'transport'     => 'postMessage',
@@ -554,7 +590,7 @@ $config = [
                     'fields'    => [
                         [
                             'default'       => '',
-                            'selector'      => '.main-navigation',
+                            'selector'      => '.main-navigation ul li a',
                             'id'            => 'header_menu_typography',
                             'title'         => __('Navigation Menu Typography', 'linden'),
                             'type'          => 'typography'
@@ -581,7 +617,7 @@ $config = [
                     'fields'    => [
                         [
                             'default'       => '',
-                            'selector'      => '.page .entry-header h1, .archive .entry-header h1',
+                            'selector'      => '.singular.page .entry-header h1, .archive .entry-header h1',
                             'id'            => 'page_title_typography',
                             'title'         => __('Page Title Typography', 'linden'),
                             'description'   => __('The typography for the main title in pages.', 'linden'),
@@ -659,7 +695,7 @@ $config = [
                             'default'       => '',
                             'selector'      => '.singular.portfolio .entry-header p',
                             'id'            => 'portfolio_subtitle_typography',
-                            'title'         => __('Projects Title Typography', 'linden'),
+                            'title'         => __('Projects Subtitle Typography', 'linden'),
                             'description'   => __('The typography for the subtitles in projects.', 'linden'),
                             'type'          => 'typography'
                         ],                        
@@ -667,7 +703,7 @@ $config = [
                             'default'       => '',
                             'selector'      => '.singular.portfolio .entry-content',
                             'id'            => 'portfolio_content_typography',
-                            'title'         => __('Page Content Typography', 'linden'),
+                            'title'         => __('Projects Content Typography', 'linden'),
                             'description'   => __('The typography for the content in projects.', 'linden'),
                             'type'          => 'typography'
                         ],

@@ -39,7 +39,7 @@ class Index extends Template {
         }
 
         $this->properties['description']    = term_description();
-        $this->loop = $this->getPostType() == 'portfolio' ? new Components\Projects() : new Components\Posts(['customize' => $this->data['customize']]);
+        $this->loop = $this->getPostType() == 'portfolio' ? new Components\Projects(['customize' => $this->data['customize']]) : new Components\Posts(['customize' => $this->data['customize']]);
 
     }
 
@@ -53,6 +53,7 @@ class Index extends Template {
         $type = 'post';
     
         global $wp_query;
+
 
         if( is_front_page() ) {
 

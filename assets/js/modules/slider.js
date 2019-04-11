@@ -8,7 +8,14 @@ var Slider = {
     init: function() {
         
         if( typeof tns !== 'undefined' ) {
-            this.instance = tns({container: '.entry-slider', controlsText: ['&lsaquo;', '&rsaquo;'], lazyload: true, lazyloadSelector: '.lazy', navPosition: 'bottom'});
+            console.log('TNS');
+            this.instance = tns({
+                container: '.entry-slider', 
+                controlsText: ['&lsaquo;', '&rsaquo;'], 
+                lazyload: true, 
+                lazyloadSelector: '.lazy', 
+                navPosition: 'bottom'
+            });
         } 
 
         // var lazy = slider.getElementsByClassName('lazy');

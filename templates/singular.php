@@ -19,7 +19,7 @@ $singular->header(); ?>
         <div class="container">
             <h1 class="entry-title" itemprop="name"><?php echo $singular->properties['title']; ?></h1>
             <?php if( $singular->properties['subtitle'] ) { ?>
-                <p class="sub-title"<?php echo $singular->properties['subtitle']; ?> ></p>
+                <p class="sub-title"><?php echo $singular->properties['subtitle']; ?></p>
             <?php } ?> 
             
             <?php if( $singular->meta ) {  $singular->meta->render(); } ?>

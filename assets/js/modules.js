@@ -5,7 +5,6 @@
 var Linden = {
     modules: {
         header: require('./modules/header'),
-        footer: require('./modules/footer'),
         slider: require('./modules/slider')
     },
     init: function() {
