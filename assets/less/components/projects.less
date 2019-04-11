@@ -7,11 +7,14 @@
 }
 
 .project-caption {
+    align-content: center;
     background: rgba(255,255,255,0.9);
     border-radius: 50%;
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
     height: 260px;
     left: 50%;  
+    justify-content: center;
     margin: -130px 0 0 -130px;
     opacity: 1;
     overflow: hidden;
@@ -36,8 +39,10 @@
     font-family: 'MontSerrat', Arial, serif;
     font-size: 0.9em;
     font-weight: 300;
+    margin: 0;
     text-align: center;
-    text-transform: uppercase;  
+    text-transform: uppercase; 
+    width: 100%; 
     .project-caption & {
         text-align: center;
     }   

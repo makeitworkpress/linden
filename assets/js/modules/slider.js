@@ -2,13 +2,11 @@
  * The JavaScript for setting-up the slider
  */
 var Slider = {
-    
     slider: document.getElementsByClassName('entry-slider'),
     instance: null,
     init: function() {
         
         if( typeof tns !== 'undefined' ) {
-            console.log('TNS');
             this.instance = tns({
                 container: '.entry-slider', 
                 controlsText: ['&lsaquo;', '&rsaquo;'], 
@@ -16,27 +14,34 @@ var Slider = {
                 lazyloadSelector: '.lazy', 
                 navPosition: 'bottom'
             });
-        } 
+        }
 
-        // var lazy = slider.getElementsByClassName('lazy');
+        /**
+         * Fixes a bug with a wrong slider height with lazy loaded images.
+         */
+        var lazy = this.slider[0].querySelectorAll('.lazy'),
+            maxHeight = 570,
+            slides = this.slider[0].querySelectorAll('.slide');
 
-        // if( lazy.length > 0 && Slider.slider.length > 0 ) {
+        if( lazy.length > 0 && slides.length > 0 ) {
             
-        //     setTimeout( function() {
+            setTimeout( function() {
 
-        //         if(options.autoHeight) {
-        //             maxHeight = slides[0].clientHeight;
-        //         } else {
-        //              maxHeight = Math.max.apply(null, slides.map(function () {
-        //                 return $(this).height();
-        //             }).get()); 
-        //         }
+                maxHeight = Array.prototype.map.call(slides, function(n) {
+                    if( n.clientHeight != n.clientWidth ) {
+                        return n.clientHeight;
+                    }
+                }).filter( function(n) {
+                    return n != null;
+                }).reduce( function(a, b) {
+                    return Math.max(a, b);
+                });
 
-        //         slider.closest('.tns-inner').height(maxHeight);
+                Slider.slider[0].style.maxHeight = maxHeight + 'px';
 
-        //     }, 300);   
+            }, 300);
 
-        // }
+        }
            
     }
 
