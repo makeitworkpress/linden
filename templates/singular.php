@@ -26,12 +26,14 @@ $singular->header(); ?>
         </div>
     </header>
     
-    <div class="entry-content" itemprop="<?php echo $singular->properties['text_scheme']; ?>">
-        <div class="container">
-            <?php echo $singular->properties['content']; ?>
-            <?php echo $singular->properties['pages']; ?>
-        </div>
-    </div> 
+    <?php if( $singular->properties['content'] ) { ?> 
+        <div class="entry-content" itemprop="<?php echo $singular->properties['text_scheme']; ?>">
+            <div class="container">
+                <?php echo $singular->properties['content']; ?>
+                <?php echo $singular->properties['pages']; ?>
+            </div>
+        </div> 
+    <?php } ?>
     
     <?php if( $singular->pagination || $singular->comments  ) { ?>
         <footer class="entry-footer">

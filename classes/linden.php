@@ -244,7 +244,7 @@ class Linden {
         if( isset($this->data['general']['home_post_type']) && $this->data['general']['home_post_type'] == 'portfolio' ) {
             add_action( 'pre_get_posts', function($query) {
                 $template = get_page_template_slug( get_queried_object_id() );
-                if( $query->is_home && ! $template ) {
+                if( $query->is_home && ! $template && $query->is_main_query() ) {
                     $query->set('post_type', 'portfolio');
                 }
             } );

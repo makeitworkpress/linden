@@ -17,7 +17,7 @@
                             sprintf( __('View all posts by %s'), $meta['author']),
                             $meta['author']
                         ) .
-                '   </span>
+                    '</span>
                 </span>'  
             ); 
         ?>
