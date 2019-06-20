@@ -306,6 +306,7 @@ class Linden {
 
                 foreach( $this->config->configurations['settings'] as $frame => $options ) {
                     $frame = strpos($frame, 'customizer') !== false ? 'customizer' : $frame;
+                    $frame = isset($options['frame']) && in_array($options['frame'], ['customizer', 'meta', 'options']) ? $options['frame'] : $frame;
                     $framework->add( $frame, $options );    
                 }
 

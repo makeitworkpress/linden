@@ -11,7 +11,7 @@ $config = [
             'name'      => 'linden', 
             'localize'  => ['ajax' => admin_url( 'admin-ajax.php' ), 'nonce' => wp_create_nonce("redvelvetcake")]
         ]        
-        ],
+    ],
     'register' => [
         'imageSizes' => [
             [ 'name' => 'linden-s', 'width' => 485, 'height' => 285, 'crop' => true],

@@ -78,7 +78,7 @@ class Repeatable implements Field {
                                 
                                 
                                 if( class_exists($class) ) { ?>
-                                    <div class="wp-custom-fields-repeatable-field wp-custom-fields-option-field field-<?php esc_attr_e($subfield['type'] . ' ' . $subfield['columns']); ?>">
+                                    <div class="wp-custom-fields-repeatable-field wp-custom-fields-option-field field-<?php echo esc_attr($subfield['type'] . ' ' . $subfield['columns']); ?>">
                                         <h5><?php esc_html_e($subfield['title']); ?></h5>
                                         <?php $class::render($subfield); ?>
                                         <?php if( isset($subfield['description']) ) {  ?>
@@ -94,7 +94,7 @@ class Repeatable implements Field {
 
                 <?php } ?>           
         
-                <div class="wp-custom-fields-repeatable-buttons">';
+                <div class="wp-custom-fields-repeatable-buttons">
                     <a href="#" class="button wp-custom-fields-repeatable-remove" title="<?php _e('Remove', 'wp-custom-fields'); ?>"><?php echo $remove; ?></a>
                     <a href="#" class="button wp-custom-fields-repeatable-add button-primary" title="<?php _e('Add', 'wp-custom-fields'); ?>"><?php echo $add; ?></a>
                 </div>
