@@ -82,7 +82,7 @@ abstract class Component {
         $component = str_replace('.php', '', $this->component);
 
         // Set custom values for the given component
-        ${$component} = apply_filters( 'velocity_' . $component . '_properties', $this->properties );
+        ${$component} = apply_filters( 'linden_' . $component . '_properties', $this->properties );
 
         // The component is not set
         if( ! $this->component ) {
