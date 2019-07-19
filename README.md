@@ -1,7 +1,7 @@
 # linden
 Linden is a minimalistic portfolio theme with a left oriented navigation menu. It is lightweight and loads in an instant. The linden Portfolio theme supports posts and has a special post type for displaying projects and work in a portfolio style.
 
-A live website using the Linden WordPress theme can be found [here]([release](https://github.com/makeitworkpress/linden/releases))
+A live website using the Linden WordPress theme can be found [here](https://tinekevanlindenberg.nl)
 
 ## Installation
 * Download the ZIP file for the latest [release](https://github.com/makeitworkpress/linden/releases)
