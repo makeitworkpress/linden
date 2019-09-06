@@ -54,7 +54,7 @@ class Posts extends Component {
                 'class'         => implode(' ', array_filter(get_post_class('post-item', $post->ID)) ),
                 'excerpt'       => $this->excerpt($post),
                 'image'         => has_post_thumbnail($post) ? get_the_post_thumbnail( $post, $size ) : false,
-                'imageUrl'      => $this->atts['image'] && has_post_thumbnail($post) ? get_the_post_thumbnail_url( $post, $imageSize ) : false,
+                'imageUrl'      => has_post_thumbnail($post) ? get_the_post_thumbnail_url( $post, $imageSize ) : false,
                 'link'          => esc_url( get_permalink($post) ),   
                 'meta'          => $this->atts['customize']['post_meta_disable'] ? false : new Meta(),
                 'modified'      => get_the_modified_date('c', $post->ID ),        

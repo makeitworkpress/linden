@@ -41,7 +41,7 @@ $singular->header(); ?>
             <figure class="entry-image"><?php echo $singular->properties['image']; ?></figure>
         <?php } ?>
         <div class="container">
-            <h1 class="entry-title" itemprop="name"><?php echo $singular->properties['title']; ?></h1>
+            <h1 class="entry-title" itemprop="name headline"><?php echo $singular->properties['title']; ?></h1>
             <?php if( $singular->properties['subtitle'] ) { ?>
                 <p class="sub-title"><?php echo $singular->properties['subtitle']; ?></p>
             <?php } ?> 

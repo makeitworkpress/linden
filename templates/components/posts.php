@@ -46,7 +46,7 @@
                     <meta itemprop="datePublished" content="<?php echo $post['published']; ?>" />
                     <meta itemprop="dateModified" content="<?php echo $post['modified']; ?>" /> 
                     
-                    <?php if( $post['image'] ) { ?>
+                    <?php if( $post['imageUrl'] ) { ?>
                         <meta itemprop="image" content="<?php echo $post['imageUrl']; ?>" />    
                     <?php } ?>                    
                     
@@ -58,7 +58,7 @@
                                 </a>
                             </figure>
                         <?php } ?>            
-                        <h2 class="entry-title" itemprop="name">
+                        <h2 class="entry-title" itemprop="name headline">
                             <a href="<?php echo $post['link']; ?>" rel="bookmark" title="<?php echo $post['title_attr']; ?>" itemprop="url">
                                 <?php echo $post['title']; ?>
                             </a>
