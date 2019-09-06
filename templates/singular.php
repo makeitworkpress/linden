@@ -4,11 +4,35 @@
  */
 $singular = new Views\Singular(); 
 $singular->header(); ?>
-<article id="post-<?php echo $singular->properties['id']; ?>" <?php post_class('singular'); ?> <?php echo $singular->properties['scheme']; ?>>
+<article id="post-<?php echo $singular->properties['id']; ?>" <?php post_class('singular'); ?> <?php echo $singular->properties['schema']; ?>>
     
     <?php  if ( $singular->properties['image'] ) { ?>
         <meta itemprop="image" content="<?php echo get_the_post_thumbnail_url( $singular->properties['id'], 'large' ); ?>" />
     <?php } ?>
+
+    <?php if($singular->properties['type'] == 'post') { ?>
+
+        <span class="structured-data hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+            <meta itemprop="name" content="<?php echo $singular->properties['author']; ?>">
+        </span>
+
+        <span class="structured-data hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization">
+            <span itemprop="logo"itemscope="itemscope" itemtype="http://schema.org/ImageObject">
+                <?php if( strpos($singular->properties['logo'], '.svg') ) { ?>
+                    <meta itemprop="contentUrl" content="<?php echo $singular->properties['logo']; ?>" />
+                    <meta itemprop="url" content="<?php echo $singular->properties['blogUrl']; ?>" />
+                <?php } else { ?>
+                    <meta itemprop="url" content="<?php echo $singular->properties['logo']; ?>" />
+                <?php } ?>
+            </span>
+            <meta itemprop="name" content="<?php echo $singular->properties['blogName']; ?>" />
+        </span>                    
+
+        <meta itemprop="mainEntityOfPage" content="<?php echo $singular->properties['postUrl']; ?>" />
+        <meta itemprop="datePublished" content="<?php echo $singular->properties['published']; ?>" />
+        <meta itemprop="dateModified" content="<?php echo $singular->properties['modified']; ?>" />   
+
+    <?php } ?>    
     
     <header class="entry-header">
         <?php if( $singular->slider ) { 
@@ -27,7 +51,7 @@ $singular->header(); ?>
     </header>
     
     <?php if( $singular->properties['content'] ) { ?> 
-        <div class="entry-content" itemprop="<?php echo $singular->properties['text_scheme']; ?>">
+        <div class="entry-content" itemprop="<?php echo $singular->properties['text_schema']; ?>">
             <div class="container">
                 <?php echo $singular->properties['content']; ?>
                 <?php echo $singular->properties['pages']; ?>

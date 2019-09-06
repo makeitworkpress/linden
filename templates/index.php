@@ -4,7 +4,7 @@
  */
 $index = new Views\Index();
 $index->header(); ?>
-<article id="archive" class="archive" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
+<article id="archive" class="archive">
 	<?php if($index->properties['title']) { ?>
 		<header class="entry-header">
 			<div class="container">

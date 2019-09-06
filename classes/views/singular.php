@@ -16,9 +16,20 @@ class Singular extends Template {
 
         global $post;
 
+        $general                            = get_theme_mod('linden_general');
+
         // Microschemes
-        $this->properties['scheme']         = is_singular('post') ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"';
-        $this->properties['text_scheme']    = is_singular('post') ? 'articleBody' : 'text';
+        $this->properties['schema']         = is_singular('post') ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"';
+        $this->properties['text_schema']    = is_singular('post') ? 'articleBody' : 'text';
+        $this->properties['type']           = $post->post_type;
+        $this->properties['author']         = get_the_author_meta('display_name', $post->post_author);  
+        $this->properties['logo']           = $general['logo'] ? wp_get_attachment_url( $general['logo'] ) : '';     
+        $this->properties['blogName']       = get_bloginfo('name');        
+        $this->properties['imageUrl']       = get_the_post_thumbnail_url( $post->ID, '1920' );
+        $this->properties['postUrl']        = esc_url( get_permalink($post) );   
+        $this->properties['modified']       = get_the_modified_date('c', $post->ID );
+        $this->properties['published']      = get_the_date('c', $post->ID );
+        $this->properties['blogUrl']        = get_bloginfo('url');      
 
         // Slider
         $this->slider                       = isset($this->data['meta']['slider']) && $this->data['meta']['slider'] ? new Components\Slider(['customize' => $this->data['customize'], 'meta' => $this->data['meta']]) : false;

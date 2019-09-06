@@ -23,12 +23,13 @@ class Header extends Template {
         $this->properties['url']            = esc_url( get_bloginfo('url') );          
 
         // The logo
-        $this->properties['logo_scheme']    = isset($this->data['options']['scheme']) && $this->data['options']['scheme'] ? $this->data['options']['scheme'] : 'Organization';
+        $schemas                            = ['person' => 'Person', 'organization' => 'Organization'];                            
+        $this->properties['logo_schema']    = isset($this->data['options']['scheme']) && $this->data['options']['scheme'] ? $schemas[$this->data['options']['scheme']] : 'Organization';
         $this->properties['logo']           = isset($general['logo']) && $general['logo'] ? wp_get_attachment_image( $general['logo'], 'full', false, ['itemprop' => 'image'] ) : ''; 
 
         
         // Main Microschemes
-        $this->properties['main_scheme']    = is_singular('post') || is_archive() || is_search() ? 'itemscope="itemscope" itemtype="http://schema.org/Blog"' : 'itemprop="mainContentOfPage"'; 
+        $this->properties['main_schema']    = is_singular('post') || is_archive() || is_search() ? 'itemscope="itemscope" itemtype="http://schema.org/Blog"' : 'itemprop="mainContentOfPage"'; 
     
     }
 

@@ -25,6 +25,31 @@
 
             <?php foreach($posts['posts'] as $id => $post ) { ?>
                 <article id="post-<?php echo $id; ?>" class="<?php echo $post['class']; ?>" itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+                    
+                    <span class="structured-data hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                        <meta itemprop="name" content="<?php echo $post['author']; ?>">
+                    </span>
+
+                    <span class="structured-data hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization">
+                        <span itemprop="logo"itemscope="itemscope" itemtype="http://schema.org/ImageObject">
+                            <?php if( strpos($posts['logo'], '.svg') ) { ?>
+                                <meta itemprop="contentUrl" content="<?php echo $posts['logo']; ?>" />
+                                <meta itemprop="url" content="<?php echo $posts['blogUrl']; ?>" />
+                            <?php } else { ?>
+                                <meta itemprop="url" content="<?php echo $posts['logo']; ?>" />
+                            <?php } ?>
+                        </span>
+                        <meta itemprop="name" content="<?php echo $posts['blogName']; ?>" />
+                    </span>                    
+
+                    <meta itemprop="mainEntityOfPage" content="<?php echo $post['link']; ?>" />
+                    <meta itemprop="datePublished" content="<?php echo $post['published']; ?>" />
+                    <meta itemprop="dateModified" content="<?php echo $post['modified']; ?>" /> 
+                    
+                    <?php if( $post['image'] ) { ?>
+                        <meta itemprop="image" content="<?php echo $post['imageUrl']; ?>" />    
+                    <?php } ?>                    
+                    
                     <header class="post-header"> 
                         <?php if( $post['image'] ) { ?>
                             <figure class="entry-image">

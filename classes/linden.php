@@ -266,6 +266,27 @@ class Linden {
         // Loads our configurations (after the language is loaded)
         require_once( get_template_directory() . '/config/config.php' );
 
+        // By default, the settings are empty
+        $config['settings'] = [];
+
+        if( is_admin() ) {
+
+            require_once( get_template_directory() . '/config/meta.php' );
+            require_once( get_template_directory() . '/config/options.php' );
+
+            $config['settings']['meta']     = $meta;
+            $config['settings']['options']  = $options;
+
+        }
+
+        if( is_customize_preview() ) {
+            
+            require_once( get_template_directory() . '/config/customizer.php' );
+
+            $config['settings'] = $customizer;
+
+        }
+
         $configurations = apply_filters( 'linden_configurations', $config );
 
         /**
@@ -304,10 +325,14 @@ class Linden {
                 // Initialize our settings framework
                 $framework = MakeitWorkPress\WP_Custom_Fields\Framework::instance();
 
-                foreach( $this->config->configurations['settings'] as $frame => $options ) {
-                    $frame = strpos($frame, 'customizer') !== false ? 'customizer' : $frame;
-                    $frame = isset($options['frame']) && in_array($options['frame'], ['customizer', 'meta', 'options']) ? $options['frame'] : $frame;
-                    $framework->add( $frame, $options );    
+                // Only apply our modules on the back-end
+                if( is_admin() || is_customize_preview() ) {
+
+                    foreach( $this->config->configurations['settings'] as $frame => $options ) {
+                        $frame = strpos($frame, 'customizer') !== false ? 'customizer' : $frame;
+                        $framework->add( $frame, $options );    
+                    }
+
                 }
 
             // Other modules are just plain modules

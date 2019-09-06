@@ -40,16 +40,26 @@ class Posts extends Component {
             return;
         }
 
+        $general                            = get_theme_mod('linden_general');
         $size = isset($this->atts['customize']['container_width']) && $this->atts['customize']['container_width'] > 490 ? 'linden' : 'linden-s';
+
+        // Extra data for microschemas
+        $this->properties['blogName']   = get_bloginfo('name');
+        $this->properties['blogUrl']    = get_bloginfo('url');
+        $this->properties['logo']       = $general['logo'] ? wp_get_attachment_url( $general['logo'] ) : '';
 
         foreach( $wp_query->posts as $post ) {
             $this->properties['posts'][$post->ID] = [ 
+                'author'        => get_the_author_meta('display_name', $post->post_author),  
                 'class'         => implode(' ', array_filter(get_post_class('post-item', $post->ID)) ),
                 'excerpt'       => $this->excerpt($post),
-                'image'         => has_post_thumbnail($post) ? get_the_post_thumbnail( $post, $size, ['itemprop' => 'image'] ) : false, 
+                'image'         => has_post_thumbnail($post) ? get_the_post_thumbnail( $post, $size ) : false,
+                'imageUrl'      => $this->atts['image'] && has_post_thumbnail($post) ? get_the_post_thumbnail_url( $post, $imageSize ) : false,
                 'link'          => esc_url( get_permalink($post) ),   
                 'meta'          => $this->atts['customize']['post_meta_disable'] ? false : new Meta(),
+                'modified'      => get_the_modified_date('c', $post->ID ),        
                 'more'          => $this->atts['customize']['post_archive_more'] ? $this->atts['customize']['post_archive_more'] : '',
+                'published'     => get_the_date('c', $post->ID ),
                 'title'         => esc_html( get_the_title($post) ),
                 'title_attr'    => strip_tags( esc_html(get_the_title($post)) )                 
             ]; 

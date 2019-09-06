@@ -20,7 +20,7 @@ $header = new Views\Header();
     <body <?php body_class(); ?> itemscope="itemscope" itemtype="http://schema.org/WebPage">
        <header class="header <?php echo $header->properties['class'] ?>" id="header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
             <?php if( $header->properties['logo'] ) { ?>            
-                <a class="logo" href="<?php echo $header->properties['url'] ?>" title="<?php echo $header->properties['name'] ?>" rel="home" itemscope="itemscope" itemtype="http://schema.org/<?php echo $header->properties['logo_scheme']; ?>">
+                <a class="logo" href="<?php echo $header->properties['url'] ?>" title="<?php echo $header->properties['name'] ?>" rel="home" itemscope="itemscope" itemtype="http://schema.org/<?php echo $header->properties['logo_schema']; ?>">
                     <?php echo $header->properties['logo'] ?>
                     <meta itemprop="name" content="<?php echo $header->properties['name']; ?>" />
                 </a>
@@ -44,4 +44,4 @@ $header = new Views\Header();
             </nav><!-- .main-navigation --> 
         </header><!-- .header --> 
         <a class="hamburger-menu" href="#"><i class="icon-bars"></i></a>
-        <main class="main" id="main" <?php echo $header->properties['main_scheme'] ?>>
+        <main class="main" id="main" <?php echo $header->properties['main_schema'] ?>>
