@@ -105,8 +105,8 @@ class Framework extends Base {
             require_once( WP_CUSTOM_FIELDS_PATH . 'config/styles.php' );
             require_once( WP_CUSTOM_FIELDS_PATH . 'config/icons.php' );     
                     
-            $this->scripts          = $scripts;
-            $this->styles           = $styles;        
+            $this->scripts              = $scripts;
+            $this->styles               = $styles;        
             self::$icons            = apply_filters( 'wp_custom_fields_icons', $icons );
         }
         
