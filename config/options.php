@@ -50,7 +50,6 @@ $options = [
                     'description'   => __('Improve the loading performance for this theme by enabling optimalizations.', 'linden'),
                     'id'            => 'optimize',
                     'options'       => [
-                        'lazyLoad'                  => ['label' => __('Enable Images and Iframe Lazyload', 'linden')],
                         'deferCSS'                  => ['label' => __('Defer CSS', 'linden')],
                         'deferJS'                   => ['label' => __('Defer Javascript Loading', 'linden')],
                         'disableComments'           => ['label' => __('Disable Comments', 'linden')],
