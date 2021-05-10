@@ -18,7 +18,13 @@ class Linden {
      * Data object
      * @access private
      */
-    private $data = [];    
+    private $data = []; 
+    
+    /**
+     * Updater object
+     * @access public
+     */
+    public $updater;    
 
     /**
      * Determines whether a class has already been instanciated via the singleton pattern.
@@ -86,7 +92,8 @@ class Linden {
          */
 
         // Enables our theme to be updated through an external repository, in this case github
-        $updater = new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/linden'] );
+        $this->updater = MakeitWorkPress\WP_Updater\Boot::instance();
+        $this->updater->add(['source' => 'https://github.com/makeitworkpress/linden', 'type' => 'theme']);
 
         // Adds our optimalizations
         if( isset($this->data['options']['optimize']) && $this->data['options']['optimize'] ) {
