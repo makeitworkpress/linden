@@ -19,7 +19,7 @@ trait Validate {
      * Displays an settings error message depending on the context, using the add_settings_error functionality
      * Use the get_settings_errors and settings_errors function to display given errors
      * 
-     * @param array     $frame_options  The options for the frame to format
+     * @param array  $frame_options  The options for the frame to format
      * @param bool   $type           The type of error to add
      */
     public static function add_error_message( array $frame_options = [], string $type = 'update' ): void {
@@ -52,6 +52,16 @@ trait Validate {
         }
 
     }
+
+    /**
+     * Invokes the internal static method for generating an error message for network option pages
+     * 
+     * @param array  $frame_options  The options for the frame to format
+     * @param bool   $type           The type of error to add
+     */    
+    public function add_network_error_message( array $frame_options = [], string $type = 'update' ): void {
+        self::add_error_message($frame_options, $type);
+    }
     
     /**
      * Formats the output by sanitizing and validating
@@ -62,7 +72,7 @@ trait Validate {
      * 
      * @return array $output The validated and sanitized fields
      */
-    public static function format( array $frame_options, array $input, string $type = '' ): array {
+    public function format( array $frame_options, array $input, string $type = '' ): array {
 
         // Validate our users before formating any data
         if( ! is_user_logged_in() ) {
@@ -92,9 +102,9 @@ trait Validate {
         set_transient('wp_custom_fields_current_section_' . $frame_options['id'], $currentTab, 10); 
         
         /**
-         * Restore the fields for a current section
+         * Restore the fields for the current section
          */
-        if( isset($input[$frame_options['id'] . '_restore']) ) {
+        if( isset($input[$frame_options['id'] . '_restore']) || isset($input[$frame_options['id'] . '_restore_bottom']) ) {
                                           
             foreach( $frame_options['sections'] as $section ) { 
                 
@@ -119,7 +129,7 @@ trait Validate {
             }
             
             // Add a notification for option pages
-            if( $type == 'options' ) {
+            if( $type === 'options' ) {
                 self::add_error_message( $frame_options, 'restore' );
             }
             
@@ -128,7 +138,7 @@ trait Validate {
         }
         
         /**
-         * Restore the complete section
+         * Restore all options
          */
         if( isset($input[$frame_options['id'] . '_reset']) ) {
             
@@ -143,8 +153,8 @@ trait Validate {
                 
             }
             
-            if( $type == 'options' ) {
-                self::add_error_message( $frame_options['id'], 'reset' );
+            if( $type === 'options' ) {
+                self::add_error_message( $frame_options, 'reset' );
             }
             
             return $output;
@@ -158,7 +168,7 @@ trait Validate {
             
             $output = unserialize( base64_decode($input['import_value']) );
             
-            if( $type == 'options' ) {
+            if( $type === 'options' ) {
                 self::add_error_message( $frame_options, 'import' );
             }
             
@@ -183,8 +193,8 @@ trait Validate {
             
         }
         
-        // Add settings errors for option page (the update notification)
-        if( $type == 'options' ) {
+        // Add default settings errors for option page (the update notification)
+        if( $type === 'options' ) {
             self::add_error_message( $frame_options, 'update' );
         }
         
@@ -203,13 +213,19 @@ trait Validate {
     private static function sanitize_fields( $input, array $field ) {
         
         if( $field['type'] == 'repeatable' ) {
-            
-            foreach( $input as $key => $group_values ) {
-            
+
+            /**
+             * Since our repeatable fields are draggable, keys may get sorted in JS. 
+             * Altering the keys on the front-end breaks the value binding to fields, hence we reset the keys here based on the array order. 
+             * 
+             * Thus, for repeatable fields an array will be saved, where the keys always will match the field order.
+             */
+            $key = 0;
+            foreach( $input as $group_values ) {
                 foreach( $field['fields'] as $subfield ) {
                     $return[$key][$subfield['id']] = self::sanitize_field( $group_values[$subfield['id']], $subfield );
                 }
-                
+                $key++;
             }
         } else {
             $return = self::sanitize_field( $input, $field );
@@ -282,9 +298,9 @@ trait Validate {
             // Checkboxes
             case 'checkbox':
                 
-                if( isset($field['single']) && $field['single'] == true && count($field['options']) == 1 ) {
+                if( isset($field['single']) && $field['single'] == true && is_array($field['options']) && count($field['options']) == 1 ) {
                     $return_value = isset($field_value) && $field_value == 'on' ? true : false;       
-                } else {
+                } elseif( is_array($field['options']) ) {
                     foreach( $field['options'] as $key => $option ) {
                         $return_value[$key] = isset($field_value[$key]) && $field_value[$key] == 'on' ? true : false;
                     }
@@ -327,11 +343,6 @@ trait Validate {
                 global $allowedposttags;
                 $return_value = wp_kses( $field_value, $allowedposttags );
                 
-                break;  
-                
-            // Editor field    
-            case 'gallery':
-                $return_value = $return_value;
                 break; 
                  
             // Editor field    
@@ -518,7 +529,7 @@ trait Validate {
      * @param array $required   The array with required configuration keys
      * @return WP_Error|true    True if we pass the test, a WP_Error if we fail
      */
-    public static function configurations( array $options = [], array $required = [] ) {
+    public function validate_configurations( array $options = [], array $required = [] ) {
 
         foreach( $required as $requirement ) {
             if( ! isset($options[$requirement]) ) {

@@ -76,7 +76,9 @@
                     
                         <section id="<?php echo $section['id']; ?>" class="wpcf-section <?php echo $section['active']; ?>">
                             
-                            <h3 class="wpcf-section-title"><?php echo $section['title']; ?></h3>
+                            <?php if( $section['display_title']) { ?>
+                                <h3 class="wpcf-section-title"><?php echo $section['title']; ?></h3>
+                            <?php } ?>    
                             
                             <?php if( $section['description'] ) { ?>
                                 <p class="wpcf-section-description"><?php echo $section['description']; ?></p>
@@ -86,7 +88,7 @@
 
                                 <?php foreach( $section['fields'] as $key => $field ) { ?>
 
-                                    <div class="wpcf-field <?php echo $field['classes']; ?>">
+                                    <div class="wpcf-field <?php echo $field['classes']; ?>" data-id="<?php echo $field['id']; ?>">
 
                                         <?php do_action('wcf_before_field', $field); ?>
                                         
@@ -124,13 +126,15 @@
                     
                 </div> 
                 
-                <footer class="wpcf-buttons">
-                    <?php 
-                        echo $frame->reset_button;
-                        echo $frame->restore_button;
-                        echo $frame->save_button; 
-                    ?>                
-                </footer>
+                <?php if( $frame->reset_button || $frame->restore_button_bottom || $frame->save_button_bottom ) { ?>
+                    <footer class="wpcf-buttons">
+                        <?php 
+                            echo $frame->reset_button;
+                            echo $frame->restore_button_bottom;
+                            echo $frame->save_button_bottom; 
+                        ?>                
+                    </footer>
+                <?php } ?>
 
             </div>
             

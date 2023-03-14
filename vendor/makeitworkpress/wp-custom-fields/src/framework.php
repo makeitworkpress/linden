@@ -31,10 +31,10 @@ class Framework extends Base {
     private $types;    
     
     // Contains the styles that need to be enqueued
-    private $styles;
+    private $styles = [];
     
     // Contains the scripts  that need to be enqueued
-    private $scripts;      
+    private $scripts = [];    
     
     /**
      * Initializes the plugin 
@@ -225,7 +225,7 @@ class Framework extends Base {
      * @param string    $type   The type to which you want to add, accepts 'meta', 'options', 'customizer'
      * @param array     $values The respective values in form of an associative array
      */
-    public function add( string $type, array $values ): void {
+    public function add( $type, array $values ): void {
         
         // Only predefined frames are allowed            
         if( ! in_array($type, $this->types) )
@@ -293,10 +293,10 @@ class Framework extends Base {
      * 
      * @param   array       $dependency The dependency values for the dependent field
      * @param   array       $sections The sections with fields to look in for
-     * @param   array       $values The saved values for the fields
+     * @param   array|null  $values The saved values for the fields
      * @return  string      $class Returns active if a dependency is fulfilled on page load
      */
-    public static function return_dependency_Class( array $dependency, array $sections = [], array $values = [] ): string {
+    public static function return_dependency_class( array $dependency, array $sections = [], $values = [] ): string {
 
         $class          = '';
         $source_field   =  [];

@@ -14,9 +14,9 @@ module.exports.init = function(framework) {
         placeholder: 'wpcf-highlight',
         update: function( event, ui ) { 
             jQuery(this).find('.wpcf-repeatable-group').each( function(index, node) {
-                jQuery(node).html( function(n, node) {
-                    return node.replace(/\[\d+\]/g, '[' + index + ']').replace(/\_\d+\_/g, '_' + index + '_');
-                });
+                // jQuery(node).html( function(n, node) {
+                //     return node.replace(/\[\d+\]/g, '[' + index + ']').replace(/\_\d+\_/g, '_' + index + '_');
+                // });
             });
         }
     });
@@ -32,9 +32,7 @@ module.exports.init = function(framework) {
             
         // Destroy our select2 instances, if it is defined of course
         if( typeof jQuery.fn.select2 !== 'undefined' && jQuery.fn.select2 ) {
-            jQuery(group).find('.wpcf-select').select2('destroy');
-
-            console.log( jQuery(group).find('.wpcf-select') );
+            jQuery(group).find('.wpcf-select-advanced').select2('destroy');
         }     
 
         // Destroy current codemirror instances
@@ -116,11 +114,8 @@ module.exports.init = function(framework) {
 
     /**
      * Remove the current group
-     * @todo Make this dry - a lot of overlap with some earlier functions
      */
     jQuery(document).on('click', '.wpcf-repeatable-remove-group', function(e) {
-
-        console.log(e);
 
         e.preventDefault();
         var groupLength = jQuery(this).closest('.wpcf-repeatable-container').find('.wpcf-repeatable-group').length,
@@ -137,14 +132,6 @@ module.exports.init = function(framework) {
 
         setTimeout( function() {
             group.remove();
-
-            // Update the numbering of items
-            groupContainer.find('.wpcf-repeatable-group').each( function(index, node) {
-                jQuery(node).html( function(n, node) {
-                    return node.replace(/\[\d+\]/g, '[' + index + ']').replace(/\_\d+\_/g, '_' + index + '_');
-                });
-            });
-
         }, 500);
 
     });    
