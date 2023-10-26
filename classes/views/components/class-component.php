@@ -45,14 +45,13 @@ abstract class Component {
     final public function __construct( $args = [] ) {    
         
         // Retrieve our class name, which is also used to load the template
-        $child              = new ReflectionClass($this);
-        $this->component    = basename( $child->getFileName() );
+        $this->component    = strtolower( (new ReflectionClass($this))->getShortName() ) . '.php';
 
         // Initialize a component with the default properties. This function should just populate $defaults in child components.
         $this->init(); 
 
         // Parse the arguments
-        $this->atts       = wp_parse_args( $args, $this->defaults );
+        $this->atts         = wp_parse_args( $args, $this->defaults );
         
         // Populate the component with properties
         $this->populate();

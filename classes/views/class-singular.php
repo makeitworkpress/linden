@@ -39,7 +39,7 @@ class Singular extends Template {
         $this->properties['image']          = has_post_thumbnail($post->ID) ? get_the_post_thumbnail($post, $size, ['itemprop' => 'image']) : false;
 
         // Meta content
-        $this->meta                         = is_singular('post') && ! $this->data['customize']['post_meta_disable'] ? new Components\Meta() : false;    
+        $this->meta                         = is_singular('post') && ( isset($this->data['customize']['post_meta_disable']) && ! $this->data['customize']['post_meta_disable']) ? new Components\Meta() : false;    
 
         // Content
         $this->properties['id']             = get_the_ID();

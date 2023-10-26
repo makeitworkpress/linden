@@ -100,7 +100,7 @@ class Linden {
 
             // We don't defer CSS in customize previews
             if( is_customize_preview() ) {
-                $this->data['options']['optimize']['deferCSS'] = false;
+                $this->data['options']['optimize']['defer_css'] = false;
             }
 
             $optimize = new MakeitWorkPress\WP_Optimize\Optimize($this->data['options']['optimize']);

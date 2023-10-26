@@ -35,7 +35,7 @@ $singular->header(); ?>
     <?php } ?>    
     
     <header class="entry-header">
-        <?php if( $singular->slider ) { 
+        <?php if( $singular->slider ) {
             $singular->slider->render();
         } elseif( $singular->properties['image'] ) { ?>
             <figure class="entry-image"><?php echo $singular->properties['image']; ?></figure>
