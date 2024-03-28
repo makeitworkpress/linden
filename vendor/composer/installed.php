@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'd8341d604f7ae79ac950b2d5dfc59c02693207fa',
+        'reference' => '978bb8b2ce2a9dde6711555d6873901eb3be0d85',
         'name' => 'makeitworkpress/linden',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'd8341d604f7ae79ac950b2d5dfc59c02693207fa',
+            'reference' => '978bb8b2ce2a9dde6711555d6873901eb3be0d85',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-config' => array(
@@ -38,7 +38,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '84e9f198a1ccf2d6a967509ce4ca4d7a9d208d64',
+            'reference' => '0a3bd659c664d863b603e5d679eececac20d0de2',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-enqueue' => array(
